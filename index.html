@@ -1,3 +1,5 @@
+<!doctype html>
+<html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Articulare Mockup</title>
@@ -17,7 +19,7 @@
   --line-strong: hsl(40 var(--ws) 78%);
   --ink: hsl(30 calc(var(--ws) * 1.4) 11%);
   --ink-2: hsl(30 var(--ws) 28%);
-  --muted: hsl(30 var(--ws) 45%);
+  --muted: hsl(30 var(--ws) 38%);    /* v16: was 45%; now at least 5:1 on every background */
   --accent: var(--ink);
   --accent-ink: var(--surface);
   --accent-soft: hsl(40 calc(var(--ws) * 1.6) 91.5%);
@@ -35,7 +37,7 @@
   :root:not([data-theme="light"]) {
     --bg: hsl(30 calc(var(--ws) * .9) 7.5%); --surface: hsl(30 calc(var(--ws) * .9) 10%); --sunken: hsl(30 var(--ws) 13%);
     --line: hsl(30 var(--ws) 17.5%); --line-strong: hsl(30 var(--ws) 25%);
-    --ink: hsl(38 calc(var(--ws) * 1.4) 90%); --ink-2: hsl(38 var(--ws) 73%); --muted: hsl(38 var(--ws) 57%);
+    --ink: hsl(38 calc(var(--ws) * 1.4) 90%); --ink-2: hsl(38 var(--ws) 73%); --muted: hsl(38 var(--ws) 60%);
     --accent-soft: hsl(30 var(--ws) 16%); --mark: #4a4024; --mark-strong: #6b5a28; --ok: #79c08f;
     --add-fg: #8fd0a0; --add-bg: rgba(110, 190, 130, .16); --del-fg: #e79a88; --del-bg: rgba(230, 120, 100, .14);
     --shadow: 0 10px 30px rgba(0, 0, 0, .5), 0 2px 6px rgba(0, 0, 0, .35);
@@ -45,7 +47,7 @@
 :root[data-theme="dark"] {
   --bg: hsl(30 calc(var(--ws) * .9) 7.5%); --surface: hsl(30 calc(var(--ws) * .9) 10%); --sunken: hsl(30 var(--ws) 13%);
   --line: hsl(30 var(--ws) 17.5%); --line-strong: hsl(30 var(--ws) 25%);
-  --ink: hsl(38 calc(var(--ws) * 1.4) 90%); --ink-2: hsl(38 var(--ws) 73%); --muted: hsl(38 var(--ws) 57%);
+  --ink: hsl(38 calc(var(--ws) * 1.4) 90%); --ink-2: hsl(38 var(--ws) 73%); --muted: hsl(38 var(--ws) 60%);
   --accent-soft: hsl(30 var(--ws) 16%); --mark: #4a4024; --mark-strong: #6b5a28; --ok: #79c08f;
   --add-fg: #8fd0a0; --add-bg: rgba(110, 190, 130, .16); --del-fg: #e79a88; --del-bg: rgba(230, 120, 100, .14);
   --shadow: 0 10px 30px rgba(0, 0, 0, .5), 0 2px 6px rgba(0, 0, 0, .35);
@@ -57,6 +59,7 @@
 html, body { height: 100%; }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
 button, input, textarea { font: inherit; color: inherit; }
+::placeholder { color: var(--muted); opacity: 1; }
 button { cursor: pointer; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 svg.i { width: 16px; height: 16px; flex: 0 0 auto; display: block; }
@@ -64,6 +67,10 @@ svg.i { width: 16px; height: 16px; flex: 0 0 auto; display: block; }
 .frame { height: 100%; max-width: 1640px; margin: 0 auto; padding-inline: 16px; padding-block: 10px 16px; display: flex; flex-direction: column; gap: 10px; }
 .strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 16px; font-size: 12.5px; color: var(--muted); }
 .strip strong { color: var(--ink-2); font-weight: 600; }
+/* v16: "What to try" for a first-time viewer; each item opens that part of the mockup */
+.try { color: var(--ink-2); }
+.try button { border: 0; background: none; padding: 0; color: var(--ink-2); font: inherit; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+.try button:hover { color: var(--ink); text-decoration-color: currentColor; }
 
 /* Thin scrollbars */
 .body, .menu, .drawer { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
@@ -116,14 +123,14 @@ svg.i { width: 16px; height: 16px; flex: 0 0 auto; display: block; }
 .dd { position: relative; display: inline-flex; }
 .menu { position: absolute; top: calc(100% + 6px); right: 0; z-index: 35; width: 300px; max-width: 80vw; max-height: 380px; overflow: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); padding: 6px; display: flex; flex-direction: column; gap: 1px; text-align: left; }
 .menu.ml { right: auto; left: 0; }
-.menu h4 { margin: 8px 8px 3px; font-size: .72em; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.menu h4 { margin: 8px 8px 3px; font-size: .78em; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
 .menu h4:first-child { margin-top: 4px; }
 .menu button { border: 0; background: transparent; border-radius: 7px; padding: 6px 8px; text-align: left; display: flex; flex-direction: column; gap: 1px; }
 .menu button:hover, .menu button:focus-visible { background: var(--sunken); }
 .menu button[aria-current="true"] .mi { color: var(--accent); font-weight: 600; }
 .menu .mi { display: flex; align-items: center; gap: 6px; }
 .menu .md { font-size: .84em; color: var(--muted); }
-.menu .later { font-size: .72em; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; }
+.menu .later { font-size: .78em; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; }
 .dd.listdd { position: static; }
 .menu.panel { top: 0; left: auto; right: 0; bottom: 0; width: min(330px, 92%); max-width: none; max-height: none; border-radius: 12px 0 0 12px; border-right: 0; border-top: 0; padding: 10px 8px 16px; z-index: 36; }
 .panel .phead { padding: 2px 8px 8px; font-weight: 600; font-size: .95em; }
@@ -132,14 +139,16 @@ svg.i { width: 16px; height: 16px; flex: 0 0 auto; display: block; }
 .menu input { margin: 2px 2px 6px; border: 1px solid var(--line); border-radius: 7px; background: var(--sunken); padding: 6px 9px; }
 
 /* Read */
-.reading { max-width: 66ch; margin: 0 auto; padding: 22px 28px 64px 56px; font-family: var(--serif); font-size: 1.14em; line-height: 1.72; color: var(--ink); }
+.reading { max-width: 58ch; margin: 0 auto; padding: 22px 28px 64px 56px; font-family: var(--serif); font-size: 1.14em; line-height: 1.72; color: var(--ink); }
 .reading .src { font-family: var(--sans); font-size: .74em; color: var(--muted); margin: 0 0 18px; }
 .reading h3 { font-family: var(--sans); font-size: .7em; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 30px 0 12px; }
 .reading h3:first-of-type { margin-top: 0; }
 .reading p { margin: 0 0 1em; position: relative; }
-.reading p[data-num]::before { content: attr(data-num); position: absolute; left: -44px; top: .32em; width: 34px; text-align: right; font: 500 .62em/1 var(--mono); color: var(--muted); }
+.reading p[data-num]::before { content: attr(data-num); position: absolute; left: -46px; top: .36em; width: 38px; text-align: right; font: 500 .72em/1 var(--mono); color: var(--muted); }
 mark.sel, ::selection { background: var(--mark); color: inherit; }
-.selbar { display: inline-flex; gap: 2px; padding: 3px; margin: -4px 0 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 9px; box-shadow: var(--shadow); font-family: var(--sans); font-size: .78em; }
+mark.sel.off { background: transparent; }
+.selbar .selnote { padding: 0 9px 0 7px; margin-right: 2px; color: var(--muted); border-right: 1px solid var(--line); white-space: nowrap; }
+.selbar { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 2px; padding: 3px; margin: -4px 0 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 9px; box-shadow: var(--shadow); font-family: var(--sans); font-size: .78em; }
 .selbar button, .floatbar button { border: 0; background: transparent; border-radius: 6px; padding: 4px 10px; color: var(--ink); font-weight: 500; white-space: nowrap; }
 .selbar button:hover, .floatbar button:hover { background: var(--sunken); }
 .floatbar { position: fixed; z-index: 50; display: flex; gap: 2px; padding: 3px; background: var(--surface); border: 1px solid var(--line); border-radius: 9px; box-shadow: var(--shadow); font-size: 13px; }
@@ -150,16 +159,16 @@ mark.sel, ::selection { background: var(--mark); color: inherit; }
 .from-companion { display: flex; flex-direction: column; gap: 10px; color: var(--ink); }
 .from-companion p { margin: 0; }
 .who { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: .92em; }
-.who .lvl { font: 400 .78em var(--mono); color: var(--muted); }
+.who .lvl { font: 400 .88em var(--mono); color: var(--muted); }
 .opening { font-weight: 500; }
-.steps { align-self: flex-start; border: 0; background: transparent; padding: 2px 0; color: var(--muted); font: 400 .8em/1.5 var(--mono); display: flex; align-items: center; gap: 6px; text-align: left; }
+.steps { align-self: flex-start; border: 0; background: transparent; padding: 2px 0; color: var(--muted); font: 400 .8em/1.5 var(--mono); display: flex; align-items: baseline; gap: 6px; text-align: left; }
 .steps:hover { color: var(--ink-2); }
 .steps .car { display: inline-block; transition: transform .15s ease; }
 .steps[aria-expanded="true"] .car { transform: rotate(90deg); }
 .ok { color: var(--ok); }
-.steplist { margin: -4px 0 0; padding: 4px 0 4px 14px; border-left: 1px solid var(--line); list-style: none; font: 400 .78em/1.6 var(--mono); color: var(--muted); }
+.steplist { margin: -4px 0 0; padding: 4px 0 4px 14px; border-left: 1px solid var(--line); list-style: none; font: 400 .8em/1.6 var(--mono); color: var(--muted); }
 .quote { margin: 0; padding: 2px 0 2px 14px; border-left: 2px solid var(--line-strong); font-family: var(--serif); font-size: 1.04em; line-height: 1.6; }
-.qlabel { display: block; font: 500 .7em/1.4 var(--mono); letter-spacing: .04em; color: var(--muted); text-transform: uppercase; margin-bottom: 3px; }
+.qlabel { display: block; font: 500 .8em/1.4 var(--mono); letter-spacing: .04em; color: var(--muted); text-transform: uppercase; margin-bottom: 3px; }
 .held { border: 1px dashed var(--line-strong); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
 .held .row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; color: var(--ink-2); font-size: .94em; }
 .btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 4px 12px; font-weight: 500; font-size: .92em; white-space: nowrap; }
@@ -176,6 +185,14 @@ mark.sel, ::selection { background: var(--mark); color: inherit; }
 .box { border: 1px solid var(--line-strong); border-radius: 14px; background: var(--surface); padding: 8px 8px 6px 12px; display: flex; flex-direction: column; gap: 4px; }
 .box:focus-within { border-color: var(--accent); }
 .box textarea { border: 0; outline: none; resize: none; background: transparent; padding: 2px 0; min-height: 2.8em; max-height: 220px; overflow-y: auto; line-height: 1.5; }
+/* v16: a frame's lines are fixed labels, each with its own field; her words go only in the fields */
+.fields { display: flex; flex-direction: column; gap: 2px; }
+.ff { position: relative; }
+.ff .fl { position: absolute; left: 0; top: 2px; line-height: 1.5; color: var(--muted); font-weight: 500; white-space: nowrap; pointer-events: none; }
+.ff.stack .fl { position: static; display: block; white-space: normal; pointer-events: auto; cursor: text; }
+.box textarea.fv { display: block; width: 100%; min-height: 0; max-height: none; overflow: hidden; color: var(--ink); }
+.ff.stack textarea.fv { text-indent: 0 !important; }
+.box.framed textarea#input { min-height: 1.5em; }
 .brow { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
 .bl { display: flex; align-items: center; gap: 2px; min-width: 0; }
 .ib.listening { background: var(--ink); color: var(--surface); }
@@ -275,24 +292,29 @@ mark.sel, ::selection { background: var(--mark); color: inherit; }
 .pagewrap { max-width: 68ch; margin: 0 auto; padding: 22px 28px 64px; }
 .page, .pcontent { display: flex; flex-direction: column; gap: 12px; }
 .ptitle { font-family: var(--serif); font-size: 1.6em; font-weight: 600; line-height: 1.25; outline: none; }
-.pdate { display: flex; align-items: center; gap: 8px; font: 400 .78em var(--mono); color: var(--muted); }
-.pdate input { font: inherit; color: inherit; border: 1px solid transparent; background: transparent; border-radius: 6px; padding: 1px 4px; }
-.pdate input:hover, .pdate input:focus { border-color: var(--line); }
+.pdate { display: flex; align-items: center; gap: 6px; font: 400 .82em var(--mono); color: var(--muted); }
+/* v16: the date reads "9 Oct 2026" like everywhere else; the browser's own date field sits on top, invisible, to open the calendar */
+.dpick { position: relative; display: inline-flex; align-items: center; gap: 6px; border: 1px solid transparent; border-radius: 6px; padding: 1px 6px; color: var(--ink-2); cursor: pointer; }
+.dpick svg.i { width: 13px; height: 13px; color: var(--muted); }
+.dpick:hover, .dpick:focus-within { border-color: var(--line-strong); }
+.dpick input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; opacity: 0; cursor: pointer; }
 .doc { outline: none; font-family: var(--serif); font-size: 1.06em; line-height: 1.7; min-height: 1.7em; }
 .doc p { margin: 0 0 .7em; }
 .doc h3 { font-family: var(--sans); font-size: .82em; font-weight: 600; letter-spacing: .02em; margin: 1.3em 0 .1em; }
 .doc h3:first-child { margin-top: .2em; }
-.doc .hintline { font-family: var(--sans); color: var(--muted); font-size: .8em; margin: 0 0 .3em; }
+/* v16: a template's hint is a placeholder: it shows while the section is empty and disappears when you write */
+.doc p.ph.is-empty::before { content: attr(data-hint); float: left; height: 0; color: var(--muted); pointer-events: none; }
 .doc blockquote { margin: 0 0 .7em; padding-left: 12px; border-left: 2px solid var(--line-strong); color: var(--ink-2); }
 .doc ul, .doc ol { margin: 0 0 .7em; padding-left: 1.4em; }
 [data-ph]:empty::before { content: attr(data-ph); color: var(--muted); }
 .insert { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; }
 .insert .ihead { display: flex; align-items: center; gap: 8px; }
 .insert .qlabel { margin: 0; }
-.insert .idate { margin-left: auto; font: 400 .72em var(--mono); color: var(--muted); }
+.insert .idate { margin-left: auto; font: 400 .8em var(--mono); color: var(--muted); }
 .insert.hegel .itext { font-family: var(--serif); line-height: 1.6; }
 .insert.companion { border-style: dashed; }
-.insert .link { align-self: flex-start; border: 0; background: transparent; padding: 0; color: var(--accent); font-size: .82em; }
+.insert .link { align-self: flex-start; border: 0; background: transparent; padding: 0; color: var(--ink-2); font-size: .86em; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+.insert .link:hover { color: var(--ink); text-decoration-color: currentColor; }
 .assignment { max-width: 68ch; margin: 0 auto; padding: 22px 28px 64px; display: flex; flex-direction: column; gap: 16px; }
 .ahead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
 .ahead h3 { margin: 0; font-family: var(--serif); font-size: 1.5em; font-weight: 600; }
@@ -307,8 +329,10 @@ mark.sel, ::selection { background: var(--mark); color: inherit; }
 ins { text-decoration: underline; text-decoration-color: var(--add-fg); text-underline-offset: 3px; text-decoration-thickness: 1.5px; color: var(--add-fg); background: var(--add-bg); border-radius: 2px; }
 del { color: var(--del-fg); background: var(--del-bg); text-decoration-color: var(--del-fg); border-radius: 2px; }
 .edit { outline: none; font-family: var(--serif); line-height: 1.7; border-bottom: 1px solid var(--line); padding-bottom: 4px; min-height: 1.7em; }
-.grade { display: flex; align-items: center; gap: 8px; font-size: .86em; color: var(--muted); }
-.grade span.pill { border: 1px solid var(--line); border-radius: 999px; padding: 1px 10px; color: var(--ink-2); }
+.grade { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: .86em; color: var(--muted); }
+.grade label { color: var(--ink-2); font-weight: 600; }
+.gradein { width: 5.5em; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--surface); color: var(--ink); padding: 2px 8px; font: inherit; font-size: 1.08em; }
+.gradein:focus { outline: none; border-color: var(--accent); }
 .aedit { outline: none; border-radius: 6px; padding: 2px 6px; margin-inline: -6px; cursor: text; }
 .aedit:hover { background: var(--sunken); }
 .aedit:focus { background: var(--sunken); box-shadow: inset 0 0 0 1px var(--line); }
@@ -338,7 +362,7 @@ mark.cmt.active { background: var(--mark-strong); }
   .comments:not(:empty)::before { content: "Comments"; font-weight: 600; font-size: .82em; color: var(--ink-2); }
   .ccard { position: static; }
 }
-.caution { margin: 0; text-align: center; font-size: .74em; color: var(--muted); }
+.caution { margin: 0; text-align: center; font-size: .8em; color: var(--muted); }
 .panes.stack { display: grid; }
 .panes.stack .pane { min-width: 0; min-height: 0; }
 .divider.h { cursor: row-resize; }
@@ -353,7 +377,7 @@ mark.cmt.active { background: var(--mark-strong); }
 .dhead { display: flex; align-items: center; justify-content: space-between; }
 .dhead h2 { margin: 0; font-size: 1.05em; }
 .drawer section { display: flex; flex-direction: column; gap: 6px; }
-.drawer h3 { margin: 0 0 2px; font-size: .72em; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+.drawer h3 { margin: 0 0 2px; font-size: .78em; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
 .drawer label { font-weight: 600; font-size: .92em; }
 .drawer input[type="text"], .drawer textarea { border: 1px solid var(--line); border-radius: 8px; background: var(--sunken); padding: 7px 10px; resize: none; overflow: hidden; }
 .drawer p, .drawer ul { margin: 0; font-size: .86em; color: var(--muted); }
@@ -378,6 +402,7 @@ mark.cmt.active { background: var(--mark-strong); }
 <div class="frame">
   <div class="strip">
     <span><strong>Articulare</strong> · styled mockup · sample content. Hegel's text here is J. B. Baillie's translation (1910, public domain); the course reads Pinkard (2018).</span>
+    <span class="try" role="group" aria-label="What to try">What to try: <button data-try="select">select a sentence</button> · <button data-try="frame">Critique</button> · <button data-try="friction">Friction</button> · <button data-try="assignment">Weekly assignment</button> · <button data-try="changes">Changes since Week 5</button> · <button data-try="settings">Settings</button></span>
   </div>
 
   <div class="app" id="app">
@@ -454,7 +479,8 @@ mark.cmt.active { background: var(--mark-strong); }
             <p data-num="§83" data-sec="83">If now our inquiry deals with the truth of knowledge, it appears that we are inquiring what knowledge is in itself. But in this inquiry knowledge is <i>our</i> object, it is <i>for us</i>; and the essential nature (<i>Ansich</i>) of knowledge, were this to come to light, would be rather its being <i>for us</i>: what we should assert to be its essence would rather be, not the truth of knowledge, but only our knowledge of it. The essence or the criterion would lie in us, and what was to be compared with this standard, and decided upon as a result of this comparison, would not necessarily have to recognise that criterion.</p>
             <p data-num="§84" data-sec="84">But the nature of the object which we are examining surmounts this separation, or semblance of separation, and presupposition. Consciousness furnishes its own criterion in itself, and the inquiry will thereby be a comparison of itself with its own self; for the distinction, just made, falls inside itself. In consciousness there is one element <i>for</i> an other, or, in general, consciousness implicates the specific character of the moment of knowledge. At the same time this “other” is to consciousness not merely <i>for it</i>, but also outside this relation, or has a being in itself, i.e. there is the moment of truth. Thus in what consciousness inside itself declares to be the essence or truth we have the standard which itself sets up, and by which we are to measure its knowledge. Suppose we call knowledge the notion, and the essence or truth “being” or the object, then the examination consists in seeing whether the notion corresponds with the object. But if we call the inner nature of the object, or what it is in itself, the notion, and, on the other side, understand by object the notion <i>qua</i> object, i.e. the way the notion is <i>for</i> an other, then the examination consists in our seeing whether the object corresponds to its own notion. It is clear, of course, that both of these processes are the same. The essential fact, however, to be borne in mind throughout the whole inquiry is that both these moments, notion and object, “being for another” and “being in itself,” themselves fall within that knowledge which we are examining. Consequently we do not require to bring standards with us, nor to apply <i>our</i> fancies and thoughts in the inquiry; and just by our leaving these aside we are enabled to treat and discuss the subject as it actually is in itself and for itself, as it is in its complete reality.</p>
             <p data-num="§85" data-sec="85">But not only in this respect, that notion and object, the criterion and what is to be tested, are ready to hand in consciousness itself, is any addition of ours superfluous, but we are also spared the trouble of comparing these two and of making an examination in the strict sense of the term; so that in this respect, too, since consciousness tests and examines itself, all we are left to do is simply and solely to look on. For consciousness is, on the one hand, consciousness of the object, on the other, consciousness of itself; consciousness of what to it is true, and consciousness of its knowledge of that truth. Since both are for the same consciousness, it is itself their comparison; it is the same consciousness that decides and knows whether its knowledge of the object corresponds with this object or not. The object, it is true, appears only to be in such wise for consciousness as consciousness knows it. Consciousness does not seem able to get, so to say, behind it as it is, not for consciousness, but in itself, and consequently seems also unable to test knowledge by it. But just because consciousness has, in general, knowledge of an object, there is already present the distinction that the inherent nature, what the object is in itself, is one thing to consciousness, while knowledge, or the being of the object <i>for</i> consciousness, is another moment. Upon this distinction, which is present as a fact, the examination turns. Should both, when thus compared, not correspond, consciousness seems bound to alter its knowledge, in order to make it fit the object. But in the alteration of the knowledge, the object itself also, in point of fact, is altered; for the knowledge which existed was essentially a knowledge of the object; with change in the knowledge, the object also becomes different, since it belonged essentially to this knowledge. Hence consciousness comes to find that what formerly to it was the essence is not what is <i>per se</i>, or what was <i>per se</i> was only <i>per se for consciousness</i>. Since, then, in the case of its object consciousness finds its knowledge not corresponding with this object, the object likewise fails to hold out; or <mark class="sel" id="demoSel">the standard for examining is altered when that, whose criterion this standard was to be, does not hold its ground in the course of the examination</mark>; and the examination is not only an examination of knowledge, but also of the criterion used in the process.</p>
-            <div class="selbar" id="demoBar" role="group" aria-label="Selected passage">
+            <div class="selbar" id="demoBar" role="group" aria-label="Example of a selected passage">
+              <span class="selnote">Example selection</span>
               <button id="askChat">Ask in Chat</button>
               <button id="addDemo">Add to notebook</button>
             </div>
@@ -485,7 +511,7 @@ mark.cmt.active { background: var(--mark-strong); }
               <div class="menu" id="newPageMenu" hidden>
                 <h4>New page</h4>
                 <button data-tpl="free"><span class="mi">Free page</span><span class="md">A blank page.</span></button>
-                <button data-tpl="ritual"><span class="mi">Reflection</span><span class="md">Your nine reflection headings, each with a short hint. Delete the ones you don't need.</span></button>
+                <button data-tpl="ritual"><span class="mi">Reflection</span><span class="md">Your nine reflection headings, each with a short hint that disappears when you write. Delete the headings you don't need.</span></button>
                 <button data-tpl="quick"><span class="mi">Quick reflection</span><span class="md">A few of the reflection headings.</span></button>
                 <button data-tpl="reading"><span class="mi">Reading note</span><span class="md">Notes on one passage.</span></button>
                 <button data-tpl-later><span class="mi">Your own templates <span class="later">later</span></span><span class="md">Save any page as a template you can reuse.</span></button>
@@ -557,10 +583,12 @@ mark.cmt.active { background: var(--mark-strong); }
                   <div class="txt">Immanent critique: criticism that starts from the standards the other side already holds. Can AI help us learn reflexively, including about machines themselves?</div>
                 </div>
                 <div class="sect">
-                  <h4>Chat session <span>at least three turns, inserted from Chat</span></h4>
+                  <h4>Chat session <span>at least three turns · inserted from your 9 Oct chat</span></h4>
                   <div class="turns">
-                    <div><b>You</b> · In §85, is Hegel saying that when my knowing fails the test, the standard changes too?</div>
-                    <div><b class="cname">Companion</b> · You're asking two things: what the end of §85 says, and whether your experience with AI is an example of it…</div>
+                    <div><b>You</b> · Can I use immanent critique on my own ideas, judging them by a standard I already hold?</div>
+                    <div><b class="cname">Companion</b> · Yes. Start from a standard you already hold and ask whether your idea meets it. Because the standard is yours, the test doesn't bring in mine…</div>
+                    <div><b>You</b> · Then my standard would be whether I can still reconstruct, defend, challenge and revise the judgment myself.</div>
+                    <div><b class="cname">Companion</b> · That's a standard you can hold this week's reflection to. Which claim in it would you test first?…</div>
                   </div>
                 </div>
                 <div class="sect">
@@ -574,7 +602,7 @@ mark.cmt.active { background: var(--mark-strong); }
                 <div class="sect">
                   <h4>3 · What changed this week</h4>
                   <div class="edit aedit" contenteditable="true" data-ph="Write what changed, and how you'd assess it…"></div>
-                  <div class="grade">Indicative grade <span class="pill">you set this</span> · the companion never fills it in</div>
+                  <div class="grade"><label for="gradeIn">Indicative grade</label><input type="text" id="gradeIn" class="gradein" maxlength="4" placeholder="e.g. A−" autocomplete="off" spellcheck="false"><span>You set this. The companion never fills it in.</span></div>
                 </div>
               </div>
               <aside class="comments" id="comments" aria-label="Comments"></aside>
@@ -624,7 +652,7 @@ mark.cmt.active { background: var(--mark-strong); }
             <div class="from-companion">
               <div class="who"><span class="cname">Companion</span><span class="lvl">Friction · Medium</span></div>
               <p class="opening">You're asking two things: what the end of §85 says, and whether your experience with AI is an example of it. I'll show you the passage and explain it, give you one way to test your example, and leave the verdict on your own case to you.</p>
-              <button class="steps" id="stepsBtn" aria-expanded="false" aria-controls="steps1"><span class="car">▸</span>Read §85, §87 · 1 part held back · quote checked <span class="ok">✓</span></button>
+              <button class="steps" id="stepsBtn" aria-expanded="false" aria-controls="steps1"><span class="car" aria-hidden="true">▸</span><span>Read §85, §87 · 1 part held back · quote checked&nbsp;<span class="ok">✓</span></span></button>
               <ul class="steplist" id="steps1" hidden>
                 <li>Read: §85, §87 (Baillie translation)</li>
                 <li>Held back: my view of your example. You can reason this one further.</li>
@@ -664,6 +692,7 @@ mark.cmt.active { background: var(--mark-strong); }
             <div class="attached" id="attached" hidden></div>
             <div class="framenote" id="framenote" hidden><b id="fnMove"></b><span id="fnDoes"></span><button id="hintsBtn" aria-expanded="false" aria-controls="hints" hidden></button><button id="fnRemove">Remove frame</button></div>
             <ul class="hints" id="hints" hidden></ul>
+            <div class="fields" id="fields" role="group" aria-label="Frame" hidden></div>
             <label for="input" hidden>Message</label>
             <textarea id="input" rows="2" placeholder="Write to Companion…"></textarea>
             <div class="brow">
@@ -756,7 +785,8 @@ mark.cmt.active { background: var(--mark-strong); }
     users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
     history: '<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/>',
     plus: '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>',
-    pages: '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>',
+    pages: '<path d="M20 7h-3a2 2 0 0 1-2-2V2"/><path d="M9 18a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2Z"/><path d="M3 7.6v12.8A1.6 1.6 0 0 0 4.6 22h9.8"/>',
+    calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="3" y1="11" x2="21" y2="11"/>',
     newpage: '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="14 3 14 9 20 9"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/>',
     insert: '<rect x="4" y="4" width="16" height="16" rx="3"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>',
     send: '<line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>',
@@ -806,10 +836,12 @@ mark.cmt.active { background: var(--mark-strong); }
   var root = document.documentElement;
 
   // ---------- Layout ----------
-  var DEFAULT = { on: { read: true, chat: true, write: false }, order: ['read', 'write', 'chat'], w: { read: 1.5, write: 1.25, chat: 1 }, focus: 'read', scale: 1, prevOn: null, arrange: 'side', cols: [1.25, 1], rows: [1, 1] };
+  // v16: the spaces follow the toggles and the tagline: Read | Chat | Write (Karina, 13 Oct).
+  // The storage key changed too, so a layout saved by an earlier version doesn't bring back the old order.
+  var DEFAULT = { on: { read: true, chat: true, write: false }, order: ['read', 'chat', 'write'], w: { read: 1.5, write: 1.25, chat: 1 }, focus: 'read', scale: 1, prevOn: null, arrange: 'side', cols: [1.25, 1], rows: [1, 1] };
   var MINW = { read: 300, chat: 320, write: 320 };
   var CLOSE_PAST = 90;
-  var KEY = 'articulare-mockup-layout-v1';
+  var KEY = 'articulare-mockup-layout-v2';
   var NAMES = { read: 'Read', chat: 'Chat', write: 'Write' };
   function clone(o) { return JSON.parse(JSON.stringify(o)); }
   function load() {
@@ -1149,7 +1181,7 @@ mark.cmt.active { background: var(--mark-strong); }
   cnameInput.addEventListener('input', function () {
     var n = cnameInput.value.trim() || 'Companion';
     document.querySelectorAll('.cname').forEach(function (e) { e.textContent = n; });
-    input.placeholder = 'Write to ' + n + '…';
+    input.placeholder = basePlaceholder();
   });
 
   // ---------- Read ----------
@@ -1222,45 +1254,57 @@ mark.cmt.active { background: var(--mark-strong); }
   var framenote = document.getElementById('framenote'), hintsEl = document.getElementById('hints');
   var hintsBtn = document.getElementById('hintsBtn'), hintsOpen = false;
   hintsBtn.addEventListener('click', function () { hintsOpen = !hintsOpen; renderFrame(); });
-  // Read the frame's lines back. Anything after a blank line is her own extra text, outside the frame.
-  function parse(text, slots) {
-    if (text.indexOf(slots[0]) !== 0) return null;
-    var vals = [], pos = 0;
-    for (var i = 0; i < slots.length; i++) {
-      var start = text.indexOf(slots[i], pos);
-      if (start < 0) return null;
-      var from = start + slots[i].length, next;
-      if (i + 1 < slots.length) { next = text.indexOf(slots[i + 1], from); if (next < 0) return null; }
-      else { next = text.indexOf('\n\n', from); if (next < 0) next = text.length; }
-      vals.push(text.slice(from, next).trim());
-      pos = next;
-    }
-    return { vals: vals, extra: text.slice(pos).trim() };
+  // v16: a frame's lines are fixed labels, each with its own field, so her words and the frame never mix.
+  // The message box under the fields holds anything else she wants to add.
+  var fieldsEl = document.getElementById('fields'), boxEl = input.closest('.box'), fieldEls = [];
+  function growField(f) { f.style.height = 'auto'; f.style.height = f.scrollHeight + 'px'; }
+  // Her first line starts right after its label; a label too long for that sits on its own line
+  function fitLabels() {
+    fieldsEl.querySelectorAll('.ff').forEach(function (row) {
+      var lab = row.querySelector('.fl'), f = row.querySelector('.fv');
+      row.classList.remove('stack');
+      f.style.textIndent = '';
+      if (lab.offsetWidth > row.clientWidth - 64) row.classList.add('stack');
+      else f.style.textIndent = (lab.offsetWidth + 6) + 'px';
+      growField(f);
+    });
   }
-  function build(slots, vals, extra) {
-    return slots.map(function (l, i) { return l + (vals[i] || ''); }).join('\n') + (extra ? '\n\n' + extra : '');
+  // Re-measure when a label changes size (text size, fonts loading) or the box changes width
+  var labelWatch = 'ResizeObserver' in window ? new ResizeObserver(function () { if (!fieldsEl.hidden) fitLabels(); }) : null;
+  function buildFields(slots, vals) {
+    if (labelWatch) labelWatch.disconnect();
+    fieldsEl.innerHTML = '';
+    fieldEls = slots.map(function (label, i) {
+      var row = el('div', 'ff'), lab = el('label', 'fl', label.trim()), f = el('textarea', 'fv');
+      f.id = 'fv' + i;
+      lab.htmlFor = f.id;
+      f.rows = 1;
+      f.value = vals[i] || '';
+      f.addEventListener('input', function () { growField(f); syncSend(); });
+      row.appendChild(lab);
+      row.appendChild(f);
+      fieldsEl.appendChild(row);
+      if (labelWatch) labelWatch.observe(lab);
+      return f;
+    });
+    fieldsEl.hidden = !slots.length;
+    boxEl.classList.toggle('framed', !!slots.length);
+    if (labelWatch && slots.length) labelWatch.observe(fieldsEl);
+    fitLabels();
   }
-  function contentOf(text) {
-    var t = text;
-    if (frame) frame.slots.forEach(function (l) { t = t.replace(l, ''); });
-    return t.trim();
-  }
+  function fieldValues() { return fieldEls.map(function (f) { return f.value.trim(); }); }
+  function hasWords() { return !!input.value.trim() || fieldValues().some(Boolean); }
   function autoGrow() { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 220) + 'px'; }
-  function syncSend() { sendBtn.classList.toggle('ready', !!contentOf(input.value) || !!quote); autoGrow(); }
+  function syncSend() { sendBtn.classList.toggle('ready', hasWords() || !!quote); autoGrow(); }
   input.addEventListener('input', syncSend);
+  function companionName() { return document.querySelector('.cname').textContent; }
+  function basePlaceholder() { return frame ? 'Anything else (optional)…' : 'Write to ' + companionName() + '…'; }
   // Put the cursor where she needs to write next: the first empty line of the frame
   function placeCursor() {
-    var pos = input.value.length;
-    if (frame) {
-      var p = parse(input.value, frame.slots);
-      if (p) {
-        for (var i = 0; i < frame.slots.length; i++) {
-          if (!p.vals[i]) { pos = input.value.indexOf(frame.slots[i]) + frame.slots[i].length; break; }
-        }
-      }
-    }
-    input.focus();
-    input.setSelectionRange(pos, pos);
+    var target = frame ? (fieldEls.filter(function (f) { return !f.value.trim(); })[0] || input) : input;
+    target.focus();
+    var pos = target.value.length;
+    target.setSelectionRange(pos, pos);
   }
   function renderFrame() {
     framenote.hidden = !direction;
@@ -1278,9 +1322,8 @@ mark.cmt.active { background: var(--mark-strong); }
         if (h.use) {
           var b = el('button', null, 'Use it');
           b.addEventListener('click', function () {
-            var p = parse(input.value, frame.slots) || { vals: [input.value.trim()], extra: '' };
-            p.vals[h.slot] = h.use;
-            input.value = build(frame.slots, p.vals, p.extra);
+            var f = fieldEls[h.slot];
+            if (f) { f.value = h.use; growField(f); }
             syncSend();
             placeCursor();
           });
@@ -1290,23 +1333,26 @@ mark.cmt.active { background: var(--mark-strong); }
       });
     }
     moveBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.move === direction)); });
+    if (!micBtn || micBtn.getAttribute('aria-pressed') !== 'true') input.placeholder = basePlaceholder();
     syncSend();
   }
   // Her words move into the frame's first line; a second button swaps the frame; Remove takes it off.
   function setFrame(move) {
-    // Only line 1 carries into a new frame; her other lines stay below it as plain text, never relabelled.
-    var p = frame ? parse(input.value, frame.slots) : null;
-    var first = p ? p.vals[0] : input.value.trim();
-    var keep = p ? p.vals.slice(1).concat([p.extra]).filter(Boolean).join('\n') : '';
+    // Only line 1 carries into a new frame; her other lines go into the box below as plain text, never relabelled.
+    var vals = frame ? fieldValues() : [];
+    var first = frame ? vals[0] : input.value.trim();
+    var keep = frame ? vals.slice(1).concat([input.value.trim()]).filter(Boolean).join('\n') : '';
     direction = move;
     hintsOpen = false;
     if (!move) {
       frame = null;
+      buildFields([], []);
       input.value = [first, keep].filter(Boolean).join('\n');
     } else {
       frame = DRAFTED[move] && !convo.hidden ? DRAFTED[move] : FRAMES[move];
       if (!first && frame.first) first = frame.first;
-      input.value = build(frame.slots, [first], keep);
+      buildFields(frame.slots, [first]);
+      input.value = keep;
     }
     renderFrame();
     placeCursor();
@@ -1334,11 +1380,10 @@ mark.cmt.active { background: var(--mark-strong); }
   });
   document.getElementById('fnRemove').addEventListener('click', function () { setFrame(null); });
   var micBtn = document.getElementById('micBtn');
-  function companionName() { return document.querySelector('.cname').textContent; }
   function stopMic() {
     micBtn.setAttribute('aria-pressed', 'false');
     micBtn.classList.remove('listening');
-    input.placeholder = 'Write to ' + companionName() + '\u2026';
+    input.placeholder = basePlaceholder();
   }
   micBtn.addEventListener('click', function () {
     if (micBtn.getAttribute('aria-pressed') === 'true') { stopMic(); return; }
@@ -1350,12 +1395,13 @@ mark.cmt.active { background: var(--mark-strong); }
     say('Attaching isn\u2019t part of this mockup. A file you attach would also join your Library.');
   });
   document.getElementById('send').addEventListener('click', function () {
-    if (input.value.trim() || quote) say('Sending isn’t part of this mockup.');
-    stopMic();
+    if (hasWords() || quote) say('Sending isn’t part of this mockup.');
     input.value = '';
     direction = null;
     frame = null;
     quote = null;
+    buildFields([], []);
+    stopMic();
     renderAttached();
     renderFrame();
   });
@@ -1521,6 +1567,17 @@ mark.cmt.active { background: var(--mark-strong); }
   }
   document.querySelectorAll('.toolbar').forEach(buildColorControls);
 
+  // A template's hint shows only while its section is empty. A paragraph split off with Enter doesn't repeat the hint.
+  document.addEventListener('input', function (e) {
+    var d = e.target.closest && e.target.closest('.doc');
+    if (!d) return;
+    d.querySelectorAll('p.ph').forEach(function (p) {
+      var prev = p.previousElementSibling;
+      if (!prev || prev.tagName !== 'H3') { p.classList.remove('ph', 'is-empty'); p.removeAttribute('data-hint'); return; }
+      p.classList.toggle('is-empty', !p.textContent.trim());
+    });
+  });
+
   // Text boxes grow with what you write instead of having a drag handle
   function grow(t) { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }
   document.addEventListener('input', function (e) {
@@ -1557,25 +1614,32 @@ mark.cmt.active { background: var(--mark-strong); }
     t.contentEditable = 'true';
     t.spellcheck = false;
     rootEl.appendChild(t);
+    // The date reads "9 Oct 2026" like the rest of the app; clicking it opens the browser's own calendar
     var row = el('div', 'pdate');
-    var lab = el('label', null, 'Dated ');
+    row.appendChild(el('span', null, 'Dated'));
+    var pick = el('label', 'dpick'), dtext = el('span', 'dtext', pretty(date));
     var di = document.createElement('input');
     di.type = 'date';
     di.value = date;
-    lab.appendChild(di);
-    row.appendChild(lab);
+    di.setAttribute('aria-label', 'Page date');
+    pick.innerHTML = icon('calendar');
+    pick.insertBefore(dtext, pick.firstChild);
+    pick.appendChild(di);
+    row.appendChild(pick);
     rootEl.appendChild(row);
+    di.addEventListener('click', function () { try { di.showPicker(); } catch (e) {} });
+    di.addEventListener('input', function () { dtext.textContent = pretty(di.value) || 'No date'; });
     var content = el('div', 'pcontent');
     rootEl.appendChild(content);
     if (kind === 'ritual') {
       var html = '';
-      RITUAL.forEach(function (r) { html += '<h3>' + r[0] + '</h3><p class="hintline">' + r[1] + '</p><p><br></p>'; });
+      RITUAL.forEach(function (r) { html += '<h3>' + r[0] + '</h3><p class="ph is-empty" data-hint="' + r[1] + '"><br></p>'; });
       content.appendChild(makeDoc(html));
     } else {
       content.appendChild(makeDoc('', 'Start writing…'));
     }
     var page = { id: 'p' + (++seq), el: rootEl, titleEl: t, dateInput: di, content: content };
-    di.addEventListener('change', function () { syncDates(page); });
+    di.addEventListener('change', function () { dtext.textContent = pretty(di.value) || 'No date'; syncDates(page); });
     pages.push(page);
     pageHost.appendChild(rootEl);
     return page;
@@ -1736,6 +1800,9 @@ mark.cmt.active { background: var(--mark-strong); }
   var floatbar = document.getElementById('floatbar'), fbAsk = document.getElementById('fbAsk'), fbAdd = document.getElementById('fbAdd'), fbCmt = document.getElementById('fbCmt');
   var selCtx = null;
   [fbAsk, fbAdd, fbCmt].forEach(function (b) { b.addEventListener('mousedown', function (e) { e.preventDefault(); }); });
+  // v16: the fixed example bar under §85 steps aside once she makes a real selection, so only one bar shows
+  var demoBar = document.getElementById('demoBar'), demoMark = document.getElementById('demoSel');
+  function retireDemo() { if (demoBar.hidden) return; demoBar.hidden = true; demoMark.classList.add('off'); }
   function hideFloat() { floatbar.hidden = true; }
   function checkSel() {
     var sel = window.getSelection();
@@ -1762,6 +1829,7 @@ mark.cmt.active { background: var(--mark-strong); }
       fbAsk.hidden = !inRead;
       fbAdd.hidden = false;
       fbCmt.hidden = true;
+      retireDemo();
     }
     floatbar.hidden = false;
     var r = range.getBoundingClientRect();
@@ -1807,13 +1875,44 @@ mark.cmt.active { background: var(--mark-strong); }
       html: out.map(function (o) { return o.type === 'eq' ? esc(o.t) : '<' + o.type + '>' + esc(o.t) + '</' + o.type + '>'; }).join('')
     };
   }
+  // Where each comment's words sit in the current text, counted the way the diff counts them
+  function commentSpans(box) {
+    return Array.prototype.map.call(box.querySelectorAll('mark.cmt'), function (m) {
+      var r = document.createRange();
+      r.setStart(box, 0);
+      r.setEndBefore(m);
+      var start = r.toString().replace(/\s+/g, ' ').replace(/^ /, '').length;
+      return { id: m.dataset.c, start: start, end: start + m.textContent.replace(/\s+/g, ' ').length };
+    });
+  }
+  // Highlight the same words again in the changes view (struck-out Week 5 words don't count)
+  function markSpan(box, s) {
+    var walker = document.createTreeWalker(box, NodeFilter.SHOW_TEXT), nodes = [], n, pos = 0;
+    while ((n = walker.nextNode())) if (!n.parentElement.closest('del, .nochg')) nodes.push(n);
+    nodes.forEach(function (t) {
+      var a = pos, b = pos + t.data.length;
+      pos = b;
+      var from = Math.max(s.start, a), to = Math.min(s.end, b);
+      if (from >= to) return;
+      var mid = t.splitText(from - a);
+      mid.splitText(to - from);
+      var m = document.createElement('mark');
+      m.className = 'cmt';
+      m.dataset.c = s.id;
+      mid.parentNode.insertBefore(m, mid);
+      m.appendChild(mid);
+    });
+  }
   showChanges.addEventListener('change', function () {
     var on = showChanges.checked;
     carried.forEach(function (box) {
       if (on) {
         box.dataset.saved = box.innerHTML;
-        var d = diffWords(box.dataset.week5, box.textContent.replace(/\s+/g, ' ').trim());
-        box.innerHTML = d.changed ? d.html : esc(box.textContent) + ' <span class="nochg">(no changes since Week 5)</span>';
+        var spans = commentSpans(box), now = box.textContent.replace(/\s+/g, ' ').trim();
+        var d = diffWords(box.dataset.week5, now);
+        box.innerHTML = d.changed ? d.html : esc(now) + ' <span class="nochg">(no changes since Week 5)</span>';
+        // v16: comments keep their highlight here, so each comment still points at its words
+        spans.forEach(function (s) { markSpan(box, s); });
         box.contentEditable = 'false';
         box.classList.add('diffing');
       } else {
@@ -1935,6 +2034,51 @@ mark.cmt.active { background: var(--mark-strong); }
   });
   if ('ResizeObserver' in window) new ResizeObserver(function () { layoutComments(); }).observe(assignWrap);
   renderComments();
+
+  // ---------- What to try (the strip above the app): each item opens that part of the mockup ----------
+  function showSpace(k) {
+    if (narrow) { state.focus = k; state.on[k] = true; }
+    else if (!state.on[k]) { state.on[k] = true; state.prevOn = null; }
+    render();
+    save();
+  }
+  var TRY = {
+    select: function () {
+      showSpace('read');
+      var p = document.querySelector('.reading p[data-sec="86"]');
+      p.scrollIntoView({ block: 'center' });
+      setTimeout(function () {
+        var t = p.firstChild, r = document.createRange(), s = window.getSelection();
+        r.setStart(t, 0);
+        r.setEnd(t, t.data.indexOf('Experience.') + 'Experience.'.length);
+        s.removeAllRanges();
+        s.addRange(r);
+        checkSel();
+        say('Select any words in Read or Chat to ask about them or add them to your notebook.');
+      }, 150);
+    },
+    frame: function () {
+      showSpace('chat');
+      if (direction !== 'Critique') setFrame('Critique');
+      say('Each of the six buttons gives your message a frame to think in. Nothing is sent until you press send.');
+    },
+    friction: function () {
+      showSpace('chat');
+      if (document.getElementById('frPop').hidden) document.getElementById('frBtn').click();
+    },
+    assignment: function () {
+      showSpace('write');
+      document.querySelector('.wtab[data-w="assignment"]').click();
+    },
+    changes: function () {
+      TRY.assignment();
+      if (!showChanges.checked) { showChanges.checked = true; showChanges.dispatchEvent(new Event('change')); }
+    },
+    settings: function () { if (settings.hidden) sBtn.click(); }
+  };
+  document.querySelectorAll('[data-try]').forEach(function (b) {
+    b.addEventListener('click', function (e) { e.stopPropagation(); closeMenus(); TRY[b.dataset.try](); });
+  });
 
   // ---------- Keyboard ----------
   document.addEventListener('keydown', function (e) {
