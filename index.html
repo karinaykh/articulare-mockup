@@ -1,0 +1,1968 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Articulare Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<style>
+:root {
+  /* Layout: a slim info strip above a full-height app: top bar, then up to three side-by-side spaces
+     (Read · Write · Chat). Calm and minimal: secondary controls are icons with their names on hover.
+     Colour: near-white greys with a little warmth (--ws, fixed at 7%) and no colour accent. */
+  --ws: 7%;
+  --bg: hsl(40 var(--ws) 95.5%);
+  --surface: hsl(40 calc(var(--ws) * 2) 99.4%);
+  --sunken: hsl(40 var(--ws) 93.8%);
+  --line: hsl(40 var(--ws) 88.5%);
+  --line-strong: hsl(40 var(--ws) 78%);
+  --ink: hsl(30 calc(var(--ws) * 1.4) 11%);
+  --ink-2: hsl(30 var(--ws) 28%);
+  --muted: hsl(30 var(--ws) 45%);
+  --accent: var(--ink);
+  --accent-ink: var(--surface);
+  --accent-soft: hsl(40 calc(var(--ws) * 1.6) 91.5%);
+  --mark: #f5e9b5;
+  --mark-strong: #ecd88a;
+  --add-fg: #2f6b3d; --add-bg: rgba(77, 143, 90, .14);
+  --del-fg: #a3412f; --del-bg: rgba(192, 80, 58, .10);
+  --ok: #3b7a4a;
+  --shadow: 0 10px 30px rgba(45, 35, 25, .10), 0 2px 6px rgba(45, 35, 25, .06);
+  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: hsl(30 calc(var(--ws) * .9) 7.5%); --surface: hsl(30 calc(var(--ws) * .9) 10%); --sunken: hsl(30 var(--ws) 13%);
+    --line: hsl(30 var(--ws) 17.5%); --line-strong: hsl(30 var(--ws) 25%);
+    --ink: hsl(38 calc(var(--ws) * 1.4) 90%); --ink-2: hsl(38 var(--ws) 73%); --muted: hsl(38 var(--ws) 57%);
+    --accent-soft: hsl(30 var(--ws) 16%); --mark: #4a4024; --mark-strong: #6b5a28; --ok: #79c08f;
+    --add-fg: #8fd0a0; --add-bg: rgba(110, 190, 130, .16); --del-fg: #e79a88; --del-bg: rgba(230, 120, 100, .14);
+    --shadow: 0 10px 30px rgba(0, 0, 0, .5), 0 2px 6px rgba(0, 0, 0, .35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: hsl(30 calc(var(--ws) * .9) 7.5%); --surface: hsl(30 calc(var(--ws) * .9) 10%); --sunken: hsl(30 var(--ws) 13%);
+  --line: hsl(30 var(--ws) 17.5%); --line-strong: hsl(30 var(--ws) 25%);
+  --ink: hsl(38 calc(var(--ws) * 1.4) 90%); --ink-2: hsl(38 var(--ws) 73%); --muted: hsl(38 var(--ws) 57%);
+  --accent-soft: hsl(30 var(--ws) 16%); --mark: #4a4024; --mark-strong: #6b5a28; --ok: #79c08f;
+  --add-fg: #8fd0a0; --add-bg: rgba(110, 190, 130, .16); --del-fg: #e79a88; --del-bg: rgba(230, 120, 100, .14);
+  --shadow: 0 10px 30px rgba(0, 0, 0, .5), 0 2px 6px rgba(0, 0, 0, .35);
+  color-scheme: dark;
+}
+
+[hidden] { display: none !important; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+svg.i { width: 16px; height: 16px; flex: 0 0 auto; display: block; }
+
+.frame { height: 100%; max-width: 1640px; margin: 0 auto; padding-inline: 16px; padding-block: 10px 16px; display: flex; flex-direction: column; gap: 10px; }
+.strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 16px; font-size: 12.5px; color: var(--muted); }
+.strip strong { color: var(--ink-2); font-weight: 600; }
+
+/* Thin scrollbars */
+.body, .menu, .drawer { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+.body::-webkit-scrollbar, .menu::-webkit-scrollbar, .drawer::-webkit-scrollbar { width: 8px; height: 8px; }
+.body::-webkit-scrollbar-thumb, .menu::-webkit-scrollbar-thumb, .drawer::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 8px; border: 2px solid transparent; background-clip: padding-box; }
+.body::-webkit-scrollbar-track, .menu::-webkit-scrollbar-track, .drawer::-webkit-scrollbar-track { background: transparent; }
+
+/* App */
+.app { --scale: 1; position: relative; flex: 1; min-height: 560px; display: flex; flex-direction: column; font-size: calc(14px * var(--scale)); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.topbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 8px; font-family: var(--serif); font-weight: 600; font-size: 1.2em; letter-spacing: .005em; }
+.brand svg { width: 28px; height: 28px; }
+.idot { position: relative; display: inline-block; line-height: 1; }
+.idot i { position: absolute; left: 50%; top: -.06em; width: .21em; height: .21em; margin-left: -.105em; border-radius: 50%; border: .05em solid currentColor; }
+.toggles { display: flex; gap: 2px; margin-inline: auto; padding: 2px; border-radius: 9px; background: var(--sunken); }
+.tg { border: 0; background: transparent; color: var(--muted); padding: 4px 14px; border-radius: 7px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
+.tg::before { content: ""; width: 6px; height: 6px; border-radius: 50%; border: 1.5px solid currentColor; opacity: .7; }
+.tg[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
+.tg[aria-pressed="true"]::before { background: var(--accent); border-color: var(--accent); opacity: 1; }
+.tools { display: flex; align-items: center; gap: 2px; }
+
+.ib { position: relative; display: inline-grid; place-items: center; min-width: 30px; height: 30px; padding: 0 6px; border: 0; border-radius: 7px; background: transparent; color: var(--ink-2); }
+.ib:hover, .ib[aria-expanded="true"] { background: var(--sunken); color: var(--ink); }
+.ib.txt { font-size: .86em; font-weight: 600; }
+[data-tip]:hover::after, [data-tip]:focus-visible::after { content: attr(data-tip); position: absolute; top: calc(100% + 6px); right: 0; z-index: 30; background: var(--ink); color: var(--surface); font: 500 12px/1.3 var(--sans); padding: 4px 8px; border-radius: 6px; white-space: nowrap; pointer-events: none; }
+[data-tip].tl:hover::after, [data-tip].tl:focus-visible::after { right: auto; left: 0; }
+[data-tip].up:hover::after, [data-tip].up:focus-visible::after { top: auto; bottom: calc(100% + 6px); }
+[data-tip][aria-expanded="true"]:hover::after, [data-tip][aria-expanded="true"]:focus-visible::after { display: none; }
+.toast { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 40; background: var(--ink); color: var(--surface); border-radius: 8px; padding: 7px 14px; font-size: .92em; box-shadow: var(--shadow); pointer-events: none; max-width: calc(100% - 32px); text-align: center; }
+
+.panes { position: relative; flex: 1; display: flex; min-height: 0; }
+.pane { position: relative; min-width: 220px; display: flex; flex-direction: column; min-height: 0; background: var(--surface); }
+.app.narrow .pane { min-width: 0; }
+.pane.drop { box-shadow: inset 0 0 0 2px var(--accent); }
+.pane.dragging, .pane.closing { opacity: .35; }
+.divider { flex: 0 0 1px; background: var(--line); position: relative; cursor: col-resize; touch-action: none; }
+.divider::before { content: ""; position: absolute; inset: 0 -4px; }
+.divider:hover, .divider.active, .divider:focus-visible { background: var(--accent); }
+
+.pane-head { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 6px 8px 6px 12px; min-height: 44px; border-bottom: 1px solid var(--line); }
+.pane-head h2 { margin: 0; font-size: .82em; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.pane-head .sub { font-size: .9em; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.pane-head .right { margin-left: auto; display: flex; align-items: center; gap: 2px; }
+.grip { color: var(--line-strong); cursor: grab; user-select: none; -webkit-user-select: none; padding: 2px; border-radius: 4px; font-size: .9em; line-height: 1; }
+.pane-head:hover .grip, .grip:focus-visible { color: var(--muted); }
+.app.narrow .grip, .app.narrow .focusbtn { display: none; }
+.body { flex: 1; overflow: auto; min-height: 0; }
+
+/* Menus */
+.dd { position: relative; display: inline-flex; }
+.menu { position: absolute; top: calc(100% + 6px); right: 0; z-index: 35; width: 300px; max-width: 80vw; max-height: 380px; overflow: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); padding: 6px; display: flex; flex-direction: column; gap: 1px; text-align: left; }
+.menu.ml { right: auto; left: 0; }
+.menu h4 { margin: 8px 8px 3px; font-size: .72em; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.menu h4:first-child { margin-top: 4px; }
+.menu button { border: 0; background: transparent; border-radius: 7px; padding: 6px 8px; text-align: left; display: flex; flex-direction: column; gap: 1px; }
+.menu button:hover, .menu button:focus-visible { background: var(--sunken); }
+.menu button[aria-current="true"] .mi { color: var(--accent); font-weight: 600; }
+.menu .mi { display: flex; align-items: center; gap: 6px; }
+.menu .md { font-size: .84em; color: var(--muted); }
+.menu .later { font-size: .72em; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; }
+.dd.listdd { position: static; }
+.menu.panel { top: 0; left: auto; right: 0; bottom: 0; width: min(330px, 92%); max-width: none; max-height: none; border-radius: 12px 0 0 12px; border-right: 0; border-top: 0; padding: 10px 8px 16px; z-index: 36; }
+.panel .phead { padding: 2px 8px 8px; font-weight: 600; font-size: .95em; }
+.panel .grp { display: flex; flex-direction: column; gap: 1px; }
+.panel .pempty { margin: 8px; color: var(--muted); font-size: .86em; }
+.menu input { margin: 2px 2px 6px; border: 1px solid var(--line); border-radius: 7px; background: var(--sunken); padding: 6px 9px; }
+
+/* Read */
+.reading { max-width: 66ch; margin: 0 auto; padding: 22px 28px 64px 56px; font-family: var(--serif); font-size: 1.14em; line-height: 1.72; color: var(--ink); }
+.reading .src { font-family: var(--sans); font-size: .74em; color: var(--muted); margin: 0 0 18px; }
+.reading h3 { font-family: var(--sans); font-size: .7em; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 30px 0 12px; }
+.reading h3:first-of-type { margin-top: 0; }
+.reading p { margin: 0 0 1em; position: relative; }
+.reading p[data-num]::before { content: attr(data-num); position: absolute; left: -44px; top: .32em; width: 34px; text-align: right; font: 500 .62em/1 var(--mono); color: var(--muted); }
+mark.sel, ::selection { background: var(--mark); color: inherit; }
+.selbar { display: inline-flex; gap: 2px; padding: 3px; margin: -4px 0 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 9px; box-shadow: var(--shadow); font-family: var(--sans); font-size: .78em; }
+.selbar button, .floatbar button { border: 0; background: transparent; border-radius: 6px; padding: 4px 10px; color: var(--ink); font-weight: 500; white-space: nowrap; }
+.selbar button:hover, .floatbar button:hover { background: var(--sunken); }
+.floatbar { position: fixed; z-index: 50; display: flex; gap: 2px; padding: 3px; background: var(--surface); border: 1px solid var(--line); border-radius: 9px; box-shadow: var(--shadow); font-size: 13px; }
+
+/* Chat */
+.chatbody { padding: 18px 18px 8px; display: flex; flex-direction: column; gap: 18px; }
+.from-you { align-self: flex-end; max-width: 86%; background: var(--sunken); border-radius: 14px; padding: 10px 14px; color: var(--ink); }
+.from-companion { display: flex; flex-direction: column; gap: 10px; color: var(--ink); }
+.from-companion p { margin: 0; }
+.who { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: .92em; }
+.who .lvl { font: 400 .78em var(--mono); color: var(--muted); }
+.opening { font-weight: 500; }
+.steps { align-self: flex-start; border: 0; background: transparent; padding: 2px 0; color: var(--muted); font: 400 .8em/1.5 var(--mono); display: flex; align-items: center; gap: 6px; text-align: left; }
+.steps:hover { color: var(--ink-2); }
+.steps .car { display: inline-block; transition: transform .15s ease; }
+.steps[aria-expanded="true"] .car { transform: rotate(90deg); }
+.ok { color: var(--ok); }
+.steplist { margin: -4px 0 0; padding: 4px 0 4px 14px; border-left: 1px solid var(--line); list-style: none; font: 400 .78em/1.6 var(--mono); color: var(--muted); }
+.quote { margin: 0; padding: 2px 0 2px 14px; border-left: 2px solid var(--line-strong); font-family: var(--serif); font-size: 1.04em; line-height: 1.6; }
+.qlabel { display: block; font: 500 .7em/1.4 var(--mono); letter-spacing: .04em; color: var(--muted); text-transform: uppercase; margin-bottom: 3px; }
+.held { border: 1px dashed var(--line-strong); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+.held .row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; color: var(--ink-2); font-size: .94em; }
+.btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 4px 12px; font-weight: 500; font-size: .92em; white-space: nowrap; }
+.btn:hover { background: var(--sunken); }
+.btn.accent { border-color: var(--accent); color: var(--accent); }
+.counter { border-radius: 10px; background: var(--sunken); padding: 10px 12px; }
+.empty { margin: auto; padding: 40px 20px; text-align: center; color: var(--muted); display: flex; flex-direction: column; gap: 6px; max-width: 34ch; }
+.empty strong { color: var(--ink); font-size: 1.05em; font-weight: 600; }
+
+.composer { padding: 8px 14px 14px; display: flex; flex-direction: column; gap: 8px; }
+.moves { display: flex; flex-wrap: wrap; gap: 4px; }
+.move { position: relative; border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); border-radius: 999px; padding: 1px 10px; font-size: .84em; }
+.move:hover { color: var(--ink); border-color: var(--line-strong); }
+.box { border: 1px solid var(--line-strong); border-radius: 14px; background: var(--surface); padding: 8px 8px 6px 12px; display: flex; flex-direction: column; gap: 4px; }
+.box:focus-within { border-color: var(--accent); }
+.box textarea { border: 0; outline: none; resize: none; background: transparent; padding: 2px 0; min-height: 2.8em; max-height: 220px; overflow-y: auto; line-height: 1.5; }
+.brow { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.bl { display: flex; align-items: center; gap: 2px; min-width: 0; }
+.ib.listening { background: var(--ink); color: var(--surface); }
+.chipbtn { position: relative; display: inline-flex; align-items: center; gap: 4px; height: 28px; padding: 0 8px; border: 0; border-radius: 7px; background: transparent; color: var(--ink-2); font-size: .86em; white-space: nowrap; }
+.chipbtn:hover, .chipbtn[aria-expanded="true"] { background: var(--sunken); color: var(--ink); }
+.chipbtn b { font-weight: 600; color: var(--ink); display: inline-block; min-width: 3.7em; text-align: left; }
+.chipbtn svg.i { width: 13px; height: 13px; }
+.rng { position: relative; display: block; width: 100%; height: 22px; }
+.rng input { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; margin: 0; background: transparent; cursor: pointer; --pct: 50%; }
+.rng input::-webkit-slider-runnable-track { height: 3px; border-radius: 3px; background: linear-gradient(to right, var(--ink-2) var(--pct), var(--line-strong) var(--pct)); }
+.rng input::-moz-range-track { height: 3px; border-radius: 3px; background: var(--line-strong); }
+.rng input::-moz-range-progress { height: 3px; border-radius: 3px; background: var(--ink-2); }
+.rng input::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; margin-top: -5.5px; border-radius: 50%; background: var(--surface); border: 1.5px solid var(--ink-2); box-shadow: 0 1px 3px rgba(0, 0, 0, .15); }
+.rng input::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 1.5px solid var(--ink-2); }
+.rng input:focus-visible { outline: none; }
+.rng input:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--accent-soft); }
+.ticks { position: absolute; left: 7px; right: 7px; top: 17px; display: flex; justify-content: space-between; pointer-events: none; }
+.ticks i { width: 3px; height: 3px; border-radius: 50%; background: var(--line-strong); }
+.stops { position: relative; height: 18px; }
+.stops button { position: absolute; top: 0; transform: translateX(-50%); border: 0; background: transparent; padding: 0 2px; font-size: 11.5px; color: var(--muted); }
+.stops button.on { color: var(--ink); font-weight: 600; }
+.pop { position: absolute; bottom: calc(100% + 8px); left: 0; z-index: 35; width: 280px; max-width: 80vw; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); padding: 12px 16px 10px; font-size: 12.5px; color: var(--ink-2); display: flex; flex-direction: column; gap: 6px; }
+.poph { display: flex; flex-direction: column; gap: 1px; margin-bottom: 4px; }
+.poph b { color: var(--ink); font-size: 13px; }
+.poph span, .fnote { color: var(--muted); }
+.fdescs { display: grid; margin-top: 4px; }
+.fdescs p { grid-area: 1 / 1; margin: 0; color: var(--ink); visibility: hidden; }
+.fdescs p.on { visibility: visible; }
+.fnote { margin: 0; }
+.send { position: relative; width: 28px; height: 28px; border-radius: 8px; border: 0; background: var(--sunken); color: var(--muted); display: grid; place-items: center; transition: background-color .15s ease, color .15s ease; }
+.send.ready { background: var(--ink); color: var(--surface); }
+.framenote { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-size: .8em; color: var(--muted); padding: 2px 0 6px; border-bottom: 1px solid var(--line); }
+.framenote b { color: var(--ink); font-weight: 600; }
+.hints { margin: 2px 0 4px; padding: 8px 10px; list-style: none; display: flex; flex-direction: column; gap: 5px; border-radius: 10px; background: var(--sunken); font-size: .8em; color: var(--ink-2); }
+.hints li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px 8px; }
+.hints button { border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); border-radius: 6px; padding: 0 8px; font-size: .95em; }
+.hints button:hover { border-color: var(--ink-2); }
+.framenote button { border: 0; background: transparent; padding: 0; color: var(--ink-2); font-size: 1em; text-decoration: underline; text-underline-offset: 2px; }
+.tagline { font-family: var(--serif); font-size: 1.12em; font-weight: 500; color: var(--ink); }
+.drawer p.tagline { color: var(--ink); font-size: 1.02em; }
+.switch { -webkit-appearance: none; appearance: none; flex: 0 0 auto; position: relative; width: 30px; height: 18px; margin: 0; border-radius: 999px; background: var(--line-strong); cursor: pointer; transition: background-color .15s ease; }
+.switch::before { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--surface); box-shadow: 0 1px 2px rgba(0, 0, 0, .2); transition: transform .15s ease; }
+.switch:checked { background: var(--ink); }
+.switch:checked::before { transform: translateX(12px); }
+.menu .switch { margin: 0; padding: 0; border: 0; border-radius: 999px; background: var(--line-strong); }
+.menu .switch:checked { background: var(--ink); }
+.attached { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 2px; }
+.dchip { position: relative; display: inline-flex; align-items: center; gap: 2px; height: 24px; padding: 0 3px 0 10px; border-radius: 999px; background: var(--sunken); color: var(--ink); font-size: .84em; font-weight: 500; }
+.dchip button, .qchip button { flex: 0 0 auto; border: 0; background: transparent; color: var(--muted); width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; padding: 0; font-size: 15px; line-height: 1; }
+.dchip button:hover, .qchip button:hover { background: var(--line); color: var(--ink); }
+.qchip { display: flex; align-items: flex-start; gap: 8px; width: 100%; padding: 6px 4px 6px 10px; border-left: 2px solid var(--line-strong); background: var(--sunken); border-radius: 0 8px 8px 0; font-size: .86em; }
+.qchip .qbody { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.qchip .qt { font-family: var(--serif); color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.move[aria-pressed="true"] { background: var(--sunken); border-color: var(--ink-2); color: var(--ink); }
+.menu.size { width: auto; padding: 4px; }
+.tcolor { display: inline-flex; flex-direction: column; align-items: center; font: 600 .95em/1 var(--serif); }
+.tcolor i { display: block; width: 14px; height: 3px; margin-top: 2px; border-radius: 2px; background: var(--ink); }
+.menu.swatches { right: auto; left: 0; width: auto; padding: 8px 10px 10px; }
+.swrow { display: flex; gap: 6px; }
+.menu.swatches .sw { position: relative; display: grid; place-items: center; width: 26px; height: 26px; padding: 0; border-radius: 6px; border: 1px solid var(--line); background-color: var(--surface); font: 700 .95em/1 var(--serif); }
+.menu.swatches .sw:hover { border-color: var(--ink-2); }
+.menu.swatches .sw.none { background-image: linear-gradient(135deg, transparent 46%, var(--line-strong) 46%, var(--line-strong) 54%, transparent 54%); }
+.stepper { display: flex; align-items: center; gap: 2px; }
+.stepper output { min-width: 3.4em; text-align: center; font-size: .86em; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.drawer label.check { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+.short { display: none; }
+
+/* Write */
+.wtabs { display: inline-flex; padding: 2px; border-radius: 8px; background: var(--sunken); }
+.wtab { border: 0; background: transparent; border-radius: 6px; padding: 3px 10px; color: var(--muted); font-size: .88em; font-weight: 500; white-space: nowrap; }
+.wtab[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
+.wview { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.banner { display: flex; align-items: center; gap: 8px; padding: 6px 14px; font-size: .84em; color: var(--muted); border-bottom: 1px solid var(--line); }
+.banner.assign { background: var(--accent-soft); color: var(--ink-2); }
+.banner svg.i { width: 14px; height: 14px; }
+.bicon { display: inline-flex; }
+.banner .dd.shared { margin-left: auto; }
+.linkbtn { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 6px; padding: 1px 10px; font-size: 1em; white-space: nowrap; }
+.linkbtn:hover { border-color: var(--line-strong); }
+.menu.sharepop { width: 320px; padding: 12px; gap: 10px; cursor: default; color: var(--ink); font-size: 1.15em; }
+.menu.sharepop .phead { padding: 0; }
+.sp-note, .sp-foot { margin: 0; font-size: .86em; color: var(--muted); }
+.sp-row { display: flex; align-items: center; gap: 8px; font-size: .92em; }
+.sp-invite { display: flex; gap: 6px; }
+.menu.sharepop .sp-invite input { flex: 1; min-width: 0; margin: 0; }
+.menu.sharepop .btn { display: inline-flex; align-items: center; padding: 3px 12px; border: 1px solid var(--line); background: var(--surface); }
+.menu.sharepop .btn:hover { border-color: var(--line-strong); background: var(--sunken); }
+.sp-people { display: flex; flex-wrap: wrap; gap: 6px; }
+.sp-people:empty { display: none; }
+.pchip { display: inline-flex; align-items: center; gap: 2px; height: 24px; padding: 0 3px 0 9px; border-radius: 999px; background: var(--sunken); font-size: .84em; }
+.menu.sharepop .pchip button { display: grid; place-items: center; width: 18px; height: 18px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); }
+.menu.sharepop .pchip button:hover { background: var(--line); color: var(--ink); }
+.toolbar { display: flex; align-items: center; gap: 1px; padding: 4px 8px; border-bottom: 1px solid var(--line); }
+.toolbar .tb { border: 0; background: transparent; border-radius: 6px; min-width: 28px; height: 28px; color: var(--ink-2); position: relative; }
+.toolbar .tb:hover { background: var(--sunken); color: var(--ink); }
+.toolbar .sep { flex: 1; }
+.pagewrap { max-width: 68ch; margin: 0 auto; padding: 22px 28px 64px; }
+.page, .pcontent { display: flex; flex-direction: column; gap: 12px; }
+.ptitle { font-family: var(--serif); font-size: 1.6em; font-weight: 600; line-height: 1.25; outline: none; }
+.pdate { display: flex; align-items: center; gap: 8px; font: 400 .78em var(--mono); color: var(--muted); }
+.pdate input { font: inherit; color: inherit; border: 1px solid transparent; background: transparent; border-radius: 6px; padding: 1px 4px; }
+.pdate input:hover, .pdate input:focus { border-color: var(--line); }
+.doc { outline: none; font-family: var(--serif); font-size: 1.06em; line-height: 1.7; min-height: 1.7em; }
+.doc p { margin: 0 0 .7em; }
+.doc h3 { font-family: var(--sans); font-size: .82em; font-weight: 600; letter-spacing: .02em; margin: 1.3em 0 .1em; }
+.doc h3:first-child { margin-top: .2em; }
+.doc .hintline { font-family: var(--sans); color: var(--muted); font-size: .8em; margin: 0 0 .3em; }
+.doc blockquote { margin: 0 0 .7em; padding-left: 12px; border-left: 2px solid var(--line-strong); color: var(--ink-2); }
+.doc ul, .doc ol { margin: 0 0 .7em; padding-left: 1.4em; }
+[data-ph]:empty::before { content: attr(data-ph); color: var(--muted); }
+.insert { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; }
+.insert .ihead { display: flex; align-items: center; gap: 8px; }
+.insert .qlabel { margin: 0; }
+.insert .idate { margin-left: auto; font: 400 .72em var(--mono); color: var(--muted); }
+.insert.hegel .itext { font-family: var(--serif); line-height: 1.6; }
+.insert.companion { border-style: dashed; }
+.insert .link { align-self: flex-start; border: 0; background: transparent; padding: 0; color: var(--accent); font-size: .82em; }
+.assignment { max-width: 68ch; margin: 0 auto; padding: 22px 28px 64px; display: flex; flex-direction: column; gap: 16px; }
+.ahead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.ahead h3 { margin: 0; font-family: var(--serif); font-size: 1.5em; font-weight: 600; }
+.due { font: 400 .78em var(--mono); color: var(--muted); }
+.sect { display: flex; flex-direction: column; gap: 6px; }
+.sect h4 { margin: 0; font-size: .82em; font-weight: 600; display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+.sect h4 span { font-weight: 400; color: var(--muted); }
+.sect .txt { font-family: var(--serif); line-height: 1.7; font-size: 1.04em; }
+.sect.ro .txt { color: var(--ink-2); }
+.turns { display: flex; flex-direction: column; gap: 6px; border-left: 2px solid var(--line); padding-left: 12px; font-size: .94em; }
+.turns b { font-weight: 600; }
+ins { text-decoration: underline; text-decoration-color: var(--add-fg); text-underline-offset: 3px; text-decoration-thickness: 1.5px; color: var(--add-fg); background: var(--add-bg); border-radius: 2px; }
+del { color: var(--del-fg); background: var(--del-bg); text-decoration-color: var(--del-fg); border-radius: 2px; }
+.edit { outline: none; font-family: var(--serif); line-height: 1.7; border-bottom: 1px solid var(--line); padding-bottom: 4px; min-height: 1.7em; }
+.grade { display: flex; align-items: center; gap: 8px; font-size: .86em; color: var(--muted); }
+.grade span.pill { border: 1px solid var(--line); border-radius: 999px; padding: 1px 10px; color: var(--ink-2); }
+.aedit { outline: none; border-radius: 6px; padding: 2px 6px; margin-inline: -6px; cursor: text; }
+.aedit:hover { background: var(--sunken); }
+.aedit:focus { background: var(--sunken); box-shadow: inset 0 0 0 1px var(--line); }
+.aedit.diffing { cursor: default; background: transparent; box-shadow: none; }
+.nochg { font-family: var(--sans); font-size: .78em; color: var(--muted); }
+.chg { display: inline-flex; align-items: center; gap: 6px; font-size: .84em; color: var(--ink-2); padding-right: 4px; white-space: nowrap; cursor: pointer; }
+#w-assignment { container-type: inline-size; }
+.assign-wrap { display: grid; grid-template-columns: minmax(0, 66ch) 250px; justify-content: center; column-gap: 4px; }
+.assign-wrap .assignment { margin: 0; max-width: none; }
+.comments { position: relative; padding: 22px 16px 64px 0; }
+.ccard { position: absolute; left: 0; right: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; font-size: .84em; color: var(--ink-2); display: flex; flex-direction: column; gap: 5px; cursor: pointer; transition: top .15s ease, box-shadow .15s ease; }
+.ccard.active { border-color: var(--line-strong); box-shadow: var(--shadow); }
+.ccard .chead { display: flex; align-items: baseline; gap: 6px; }
+.ccard .chead b { color: var(--ink); font-weight: 600; }
+.ccard .chead span { color: var(--muted); font-size: .92em; }
+.ccard p { margin: 0; color: var(--ink); line-height: 1.45; }
+.ccard textarea { width: 100%; border: 1px solid var(--line); border-radius: 6px; background: var(--sunken); padding: 5px 7px; resize: none; overflow: hidden; min-height: 3.2em; font-size: 1em; }
+.ccard .cacts { display: flex; gap: 6px; justify-content: flex-end; }
+.ccard .cacts button { border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: 1px 9px; font-size: .95em; }
+.ccard .cacts button.primary { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.ccard .creply { align-self: flex-start; border: 0; background: transparent; padding: 0; color: var(--muted); font-size: .95em; text-decoration: underline; text-underline-offset: 2px; }
+mark.cmt { background: var(--mark); color: inherit; border-radius: 2px; cursor: pointer; }
+mark.cmt.active { background: var(--mark-strong); }
+@container (max-width: 760px) {
+  .assign-wrap { grid-template-columns: 1fr; }
+  .comments { padding: 0 28px 48px; display: flex; flex-direction: column; gap: 10px; }
+  .comments:not(:empty)::before { content: "Comments"; font-weight: 600; font-size: .82em; color: var(--ink-2); }
+  .ccard { position: static; }
+}
+.caution { margin: 0; text-align: center; font-size: .74em; color: var(--muted); }
+.panes.stack { display: grid; }
+.panes.stack .pane { min-width: 0; min-height: 0; }
+.divider.h { cursor: row-resize; }
+.divider.h::before { inset: -4px 0; }
+.toggles .ib { height: 28px; }
+.legend-ch { margin: 2px 0 0; font-size: .8em; color: var(--muted); }
+.comment { border-radius: 10px; background: var(--sunken); padding: 10px 12px; font-size: .9em; color: var(--ink-2); display: flex; flex-direction: column; gap: 2px; }
+.comment b { color: var(--ink); font-weight: 600; font-size: .92em; }
+
+/* Settings */
+.drawer { position: absolute; top: 0; right: 0; bottom: 0; z-index: 45; width: min(380px, 100%); background: var(--surface); border-left: 1px solid var(--line); box-shadow: var(--shadow); padding: 16px 18px; overflow: auto; display: flex; flex-direction: column; gap: 20px; }
+.dhead { display: flex; align-items: center; justify-content: space-between; }
+.dhead h2 { margin: 0; font-size: 1.05em; }
+.drawer section { display: flex; flex-direction: column; gap: 6px; }
+.drawer h3 { margin: 0 0 2px; font-size: .72em; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+.drawer label { font-weight: 600; font-size: .92em; }
+.drawer input[type="text"], .drawer textarea { border: 1px solid var(--line); border-radius: 8px; background: var(--sunken); padding: 7px 10px; resize: none; overflow: hidden; }
+.drawer p, .drawer ul { margin: 0; font-size: .86em; color: var(--muted); }
+.drawer ul { padding-left: 1.1em; display: flex; flex-direction: column; gap: 2px; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+/* Phone and narrow windows: one space at a time; the toggles become full-width tabs */
+.app.narrow .topbar .toggles { order: 3; flex: 1 1 100%; margin: 0; }
+.app.narrow .tg { flex: 1; justify-content: center; }
+.app.narrow .tg::before { display: none; }
+.app.narrow .tools { margin-left: auto; }
+.app.narrow #reset { display: none; }
+.app.narrow .pane-head h2 { display: none; }
+.app.narrow .long { display: none; }
+.app.narrow .short { display: inline; }
+@media (max-width: 700px) {
+  .reading { padding: 18px 18px 48px 46px; }
+  .pagewrap, .assignment { padding: 18px 18px 48px; }
+}
+</style>
+
+<div class="frame">
+  <div class="strip">
+    <span><strong>Articulare</strong> · styled mockup · sample content. Hegel's text here is J. B. Baillie's translation (1910, public domain); the course reads Pinkard (2018).</span>
+  </div>
+
+  <div class="app" id="app">
+    <div class="topbar">
+      <div class="brand">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><g transform="translate(0 -2)"><path d="M12 25 Q24 12 36 25" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><circle cx="13" cy="31.5" r="3.6" fill="currentColor"/><circle cx="24" cy="31.5" r="3.6" fill="currentColor"/><circle cx="35" cy="31.5" r="3.6" fill="currentColor"/></g></svg>
+        <span class="word" aria-label="Articulare">Art<span class="idot" aria-hidden="true">ı<i></i></span>culare</span>
+      </div>
+      <div class="toggles" role="group" aria-label="Spaces to show">
+        <button class="tg" data-pane="read" aria-pressed="true">Read</button>
+        <button class="tg" data-pane="chat" aria-pressed="true">Chat</button>
+        <button class="tg" data-pane="write" aria-pressed="false">Write</button>
+        <button class="ib" id="arrangeBtn" hidden></button>
+      </div>
+      <div class="tools">
+        <button class="ib" id="reset" data-tip="Default layout" aria-label="Default layout"><span data-icon="layout"></span></button>
+        <div class="dd">
+          <button class="ib txt" id="sizeBtn" data-tip="Text size" aria-label="Text size" aria-haspopup="true" aria-expanded="false" aria-controls="sizeMenu">Aa</button>
+          <div class="menu size" id="sizeMenu" hidden>
+            <div class="stepper"><button class="ib txt" id="smaller" aria-label="Smaller text">A−</button><output id="sizeVal">100%</output><button class="ib txt" id="bigger" aria-label="Larger text">A+</button></div>
+          </div>
+        </div>
+        <button class="ib" id="theme" data-tip="Light or dark" aria-label="Light or dark"><span data-icon="theme"></span></button>
+        <button class="ib" id="openSettings" data-tip="Settings" aria-label="Settings" aria-expanded="false" aria-controls="settings"><span data-icon="settings"></span></button>
+      </div>
+    </div>
+
+    <div class="panes" id="panes">
+      <!-- READ -->
+      <section class="pane" data-pane="read" aria-label="Read">
+        <div class="pane-head">
+          <span class="grip" draggable="true" tabindex="0" role="button" aria-label="Move Read: drag, or use the arrow keys">⠿</span>
+          <h2>Read</h2>
+          <span class="sub">Hegel · Introduction</span>
+          <div class="right">
+            <div class="dd listdd">
+              <button class="ib" id="libBtn" data-tip="Library" aria-label="Library" aria-haspopup="true" aria-expanded="false" aria-controls="libMenu"><span data-icon="library"></span></button>
+              <div class="menu panel" id="libMenu" hidden>
+                <div class="phead">Library</div>
+                <label for="libSearch" hidden>Search the library</label>
+                <input type="search" class="psearch" id="libSearch" placeholder="Search readings">
+                <div class="grp"><h4>Course readings</h4>
+                  <button class="it" aria-current="true"><span class="mi">Hegel · Phenomenology, Introduction</span><span class="md">§§73–89 · open now · cited by §</span></button>
+                  <button class="it" data-lib="other"><span class="mi">Hayles (2014)</span><span class="md">Cited by page</span></button>
+                  <button class="it" data-lib="other"><span class="mi">Weekly concept overviews</span><span class="md">Course framing, by week</span></button>
+                </div>
+                <div class="grp"><h4>Your uploads</h4>
+                  <button class="it" data-lib="upload"><span class="mi"><span data-icon="upload"></span>Upload a reading</span><span class="md">A PDF or your own notes. Cited by page.</span></button>
+                </div>
+                <p class="pempty" hidden>Nothing matches.</p>
+              </div>
+            </div>
+            <div class="dd listdd">
+              <button class="ib" id="tocBtn" data-tip="Contents" aria-label="Contents" aria-haspopup="true" aria-expanded="false" aria-controls="tocMenu"><span data-icon="contents"></span></button>
+              <div class="menu panel" id="tocMenu" hidden>
+                <div class="phead">Contents</div>
+                <h4>Introduction · §§73–89</h4>
+                <button data-toc="none"><span class="mi">§§73–76</span><span class="md">Knowing as instrument or medium</span></button>
+                <button data-toc="none"><span class="mi">§§77–79</span><span class="md">The path of doubt; failure leaves a result</span></button>
+                <button data-toc="none"><span class="mi">§§80–82</span><span class="md">The goal; the problem of a standard</span></button>
+                <button data-toc="s83" aria-current="true"><span class="mi">§§83–85</span><span class="md">Consciousness supplies its own standard</span></button>
+                <button data-toc="s86"><span class="mi">§§86–87</span><span class="md">Experience; the new object</span></button>
+                <button data-toc="none"><span class="mi">§§88–89</span><span class="md">The path as science</span></button>
+              </div>
+            </div>
+            <button class="ib focusbtn" data-focus="read"></button>
+          </div>
+        </div>
+        <div class="body" id="readBody">
+          <article class="reading" id="reading">
+            <p class="src">G. W. F. Hegel, <i>The Phenomenology of Mind</i>, Introduction. Translated by J. B. Baillie (1910). Paragraph numbers follow the standard numbering.</p>
+
+            <h3 id="s83">§§83–85 · Consciousness supplies its own standard</h3>
+            <p data-num="§83" data-sec="83">If now our inquiry deals with the truth of knowledge, it appears that we are inquiring what knowledge is in itself. But in this inquiry knowledge is our object, it is for us; and the essential nature (<i>Ansich</i>) of knowledge, were this to come to light, would be rather its being for us: what we should assert to be its essence would rather be, not the truth of knowledge, but only our knowledge of it. The essence or the criterion would lie in us; and that which was to be compared with this standard, and on which a decision was to be passed as a result of this comparison, would not necessarily have to recognize that criterion.</p>
+            <p data-num="§84" data-sec="84">But the nature of the object which we are examining surmounts this separation, or semblance of separation, and presupposition. Consciousness furnishes its own criterion in itself, and the inquiry will thereby be a comparison of itself with its own self; for the distinction, just made, falls inside itself. In consciousness there is one element for an other, or, in general, consciousness implicates the specific character of the moment of knowledge. At the same time this “other” is to consciousness not merely for it, but also outside this relation, or has a being in itself, i.e. there is the moment of truth. Thus in what consciousness inside itself declares to be the essence or truth we have the standard which itself sets up, and by which we are to measure its knowledge.</p>
+            <p data-sec="84">Suppose we call knowledge the notion, and the essence or truth “being” or the object, then the examination consists in seeing whether the notion corresponds with the object. But if we call the inner nature of the object, or what it is in itself, the notion, and, on the other side, understand by object the notion <i>qua</i> object, i.e. the way the notion is for an other, then the examination consists in our seeing whether the object corresponds to its own notion. It is clear, of course, that both of these processes are the same. The essential fact, however, to be borne in mind throughout the whole inquiry is that both these moments, notion and object, “being for another” and “being in itself”, themselves fall within that knowledge which we are examining. Consequently we do not require to bring standards with us, nor to apply our fancies and thoughts in the inquiry; and just by our leaving these aside we are enabled to treat and discuss the subject as it actually is in itself and for itself, as it is in its complete reality.</p>
+            <p data-num="§85" data-sec="85">But not only in this respect, that notion and object, the criterion and what is to be tested, are ready to hand in consciousness itself, is any addition of ours superfluous, but we are also spared the trouble of comparing these two and of making an examination in the strict sense of the term; so that in this respect, too, since consciousness tests and examines itself, all we are left to do is simply and solely to look on. For consciousness is, on the one hand, consciousness of the object, on the other, consciousness of itself; consciousness of what to it is true, and consciousness of its knowledge of that truth. Since both are for the same consciousness, it is itself their comparison; it is the same consciousness that decides and knows whether its knowledge of the object corresponds with this object or not. The object, it is true, appears only to be in such wise for consciousness as consciousness knows it. Consciousness does not seem able to get, so to say, behind it as it is, not for consciousness, but in itself, and consequently seems also unable to test knowledge by it. But just because consciousness has, in general, knowledge of an object, there is already present the distinction that the inherent nature, what the object is in itself, is one thing to consciousness, while knowledge, or the being of the object for consciousness, is another moment. Upon this distinction, which is present as a fact, the examination turns. Should both, when thus compared, not correspond, consciousness seems bound to alter its knowledge, in order to make it fit the object. But in the alteration of the knowledge, the object itself also, in point of fact, is altered; for the knowledge which existed was essentially a knowledge of the object; with change in the knowledge, the object also becomes different, since it belonged essentially to this knowledge. Hence consciousness comes to find that what formerly to it was the essence is not what is <i>per se</i>, or what was <i>per se</i> was only <i>per se</i> for consciousness. Since, then, in the case of its object consciousness finds its knowledge not corresponding with this object, the object likewise fails to hold out; or <mark class="sel" id="demoSel">the standard for examining is altered when that, whose criterion this standard was to be, does not hold its ground in the course of the examination</mark>; and the examination is not only an examination of knowledge, but also of the criterion used in the process.</p>
+            <div class="selbar" id="demoBar" role="group" aria-label="Selected passage">
+              <button id="askChat">Ask in Chat</button>
+              <button id="addDemo">Add to notebook</button>
+            </div>
+
+            <h3 id="s86">§§86–87 · Experience; the new object</h3>
+            <p data-num="§86" data-sec="86">This dialectic process which consciousness executes on itself — on its knowledge as well as on its object — in the sense that out of it the new and true object arises, is precisely what is termed Experience. In this connection, there is a moment in the process just mentioned which should be brought into more decided prominence, and by which a new light is cast on the scientific aspect of the following exposition. Consciousness knows something; this something is the essence or is <i>per se</i>. This object, however, is also the <i>per se</i>, the inherent reality, for consciousness. Hence comes ambiguity of this truth. Consciousness, as we see, has now two objects: one is the first <i>per se</i>, the second is the existence for consciousness of this <i>per se</i>. The last object appears at first sight to be merely the reflection of consciousness into itself, i.e. an idea not of an object, but solely of its knowledge of that first object. But, as was already indicated, by that very process the first object is altered; it ceases to be what is <i>per se</i>, and becomes consciously something which is <i>per se</i> only for consciousness. Consequently, then, what this real <i>per se</i> is for consciousness is truth: which, however, means that this is the essential reality, or the object which consciousness has. This new object contains the nothingness of the first; the new object is the experience concerning that first object.</p>
+            <p data-num="§87" data-sec="87">In this treatment of the course of experience, there is an element in virtue of which it does not seem to be in agreement with what is ordinarily understood by experience. The transition from the first object and the knowledge of it to the other object, in regard to which we say we have had experience, was so stated that the knowledge of the first object, the existence for consciousness of the first <i>ens per se</i>, is itself to be the second object. But it usually seems that we learn by experience the untruth of our first notion by appealing to some other object which we may happen to find casually and externally; so that, in general, what we have is merely the bare and simple apprehension of what is in and for itself. On the view above given, however, the new object is seen to have come about by a transformation or conversion of consciousness itself. This way of looking at the matter is our doing, what we contribute; by its means the series of experiences through which consciousness passes is lifted into a scientifically constituted sequence, but this does not exist for the consciousness we contemplate and consider. We have here, however, the same sort of circumstance, again, of which we spoke a short time ago when dealing with the relation of this exposition to scepticism, viz. that the result which at any time comes about in the case of an untrue mode of knowledge cannot possibly collapse into an empty nothing, but must necessarily be taken as the negation of that of which it is a result — a result which contains what truth the preceding mode of knowledge has in it. In the present instance the position takes this form: since what at first appeared as object is reduced, when it passes into consciousness, to what knowledge takes it to be, and the implicit nature, the real in itself, becomes what this entity <i>per se</i>, is for consciousness; this latter is the new object, whereupon there appears also a new mode or embodiment of consciousness, of which the essence is something other than that of the preceding mode. It is this circumstance which carries forward the whole succession of the modes or attitudes of consciousness in their own necessity. It is only this necessity, this origination of the new object — which offers itself to consciousness without consciousness knowing how it comes by it — that to us, who watch the process, is to be seen going on, so to say, behind its back. Thereby there enters into its process a moment of being <i>per se</i>, or of being for us, which is not expressly presented to that consciousness which is in the grip of experience itself. The content, however, of what we see arising, exists for it, and we lay hold of and comprehend merely its formal character, i.e. its bare origination; for it, what has thus arisen has merely the character of object, while, for us, it appears at the same time as a process and coming into being.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- WRITE -->
+      <section class="pane" data-pane="write" aria-label="Write">
+        <div class="pane-head">
+          <span class="grip" draggable="true" tabindex="0" role="button" aria-label="Move Write: drag, or use the arrow keys">⠿</span>
+          <h2>Write</h2>
+          <div class="wtabs" role="tablist" aria-label="Kind of writing">
+            <button class="wtab" role="tab" data-w="notebook" aria-selected="true" aria-controls="w-notebook">Notebook</button>
+            <button class="wtab" role="tab" data-w="assignment" aria-selected="false" aria-controls="w-assignment"><span class="long">Weekly assignment</span><span class="short">Assignment</span></button>
+          </div>
+          <div class="right">
+            <div class="dd listdd">
+              <button class="ib" id="pagesBtn" data-tip="Pages" aria-label="Pages" aria-haspopup="true" aria-expanded="false" aria-controls="pagesMenu"><span data-icon="pages"></span></button>
+              <div class="menu panel" id="pagesMenu" hidden></div>
+            </div>
+            <div class="dd" id="newPageWrap">
+              <button class="ib" id="newPageBtn" data-tip="New page" aria-label="New page" aria-haspopup="true" aria-expanded="false" aria-controls="newPageMenu"><span data-icon="newpage"></span></button>
+              <div class="menu" id="newPageMenu" hidden>
+                <h4>New page</h4>
+                <button data-tpl="free"><span class="mi">Free page</span><span class="md">A blank page.</span></button>
+                <button data-tpl="ritual"><span class="mi">Reflection</span><span class="md">Your nine reflection headings, each with a short hint. Delete the ones you don't need.</span></button>
+                <button data-tpl="quick"><span class="mi">Quick reflection</span><span class="md">A few of the reflection headings.</span></button>
+                <button data-tpl="reading"><span class="mi">Reading note</span><span class="md">Notes on one passage.</span></button>
+                <button data-tpl-later><span class="mi">Your own templates <span class="later">later</span></span><span class="md">Save any page as a template you can reuse.</span></button>
+              </div>
+            </div>
+            <button class="ib focusbtn" data-focus="write"></button>
+          </div>
+        </div>
+
+        <div class="wview" id="w-notebook" role="tabpanel">
+          <div class="banner" id="nbBanner">
+            <span class="bicon"><span data-icon="lock"></span></span><span id="nbShareText">Private. Only you see this page.</span>
+            <div class="dd shared">
+              <button class="linkbtn" id="shareBtn" aria-haspopup="true" aria-expanded="false" aria-controls="sharePop">Share</button>
+              <div class="menu sharepop" id="sharePop" hidden>
+                <div class="phead">Share this page</div>
+                <p class="sp-note">People you share with can read the page and comment on it. Only you can edit it.</p>
+                <label class="sp-row" for="shareInstr"><input type="checkbox" class="switch" id="shareInstr"> Your instructor</label>
+                <div class="sp-invite">
+                  <label for="inviteInput" hidden>Invite a classmate</label>
+                  <input type="text" id="inviteInput" placeholder="Invite a classmate by name or email" autocomplete="off">
+                  <button class="btn" id="inviteBtn">Invite</button>
+                </div>
+                <div class="sp-people" id="sharePeople"></div>
+                <p class="sp-foot">Your Weekly assignment is always visible to your instructor. Notebook pages stay private until you share them.</p>
+              </div>
+            </div>
+          </div>
+          <div class="toolbar" role="toolbar" aria-label="Formatting">
+            <button class="tb" data-cmd="bold" data-tip="Bold" aria-label="Bold"><b>B</b></button>
+            <button class="tb" data-cmd="italic" data-tip="Italic" aria-label="Italic"><i style="font-family:var(--serif)">I</i></button>
+            <button class="tb" data-cmd="h" data-tip="Heading" aria-label="Heading">H</button>
+            <button class="tb" data-cmd="ul" data-tip="Bulleted list" aria-label="Bulleted list"><span data-icon="listul"></span></button>
+            <button class="tb" data-cmd="ol" data-tip="Numbered list" aria-label="Numbered list"><span data-icon="listol"></span></button>
+            <button class="tb" data-cmd="quote" data-tip="Quote" aria-label="Quote"><span data-icon="quote"></span></button>
+            <span class="sep"></span>
+            <div class="dd">
+              <button class="tb" id="insertBtn" data-tip="Insert" aria-label="Insert" aria-haspopup="true" aria-expanded="false" aria-controls="insertMenu"><span data-icon="insert"></span></button>
+              <div class="menu" id="insertMenu" hidden>
+                <h4>Insert</h4>
+                <button data-insert="hegel"><span class="mi">Hegel quote</span><span class="md">The passage selected in Read. Keeps its § and links back.</span></button>
+                <button data-insert="companion"><span class="mi">Companion quote</span><span class="md">Words selected in Chat. Stay marked as the companion's.</span></button>
+              </div>
+            </div>
+          </div>
+          <div class="body"><div class="pagewrap" id="pageHost"></div></div>
+        </div>
+
+        <div class="wview" id="w-assignment" role="tabpanel" hidden>
+          <div class="banner assign"><span data-icon="eye"></span>Your instructor sees these pages and can comment on any words in them. One page per week, made from the course template.</div>
+          <div class="toolbar" role="toolbar" aria-label="Formatting and comments">
+            <button class="tb" data-cmd="bold" data-tip="Bold" aria-label="Bold"><b>B</b></button>
+            <button class="tb" data-cmd="italic" data-tip="Italic" aria-label="Italic"><i style="font-family:var(--serif)">I</i></button>
+            <button class="tb" data-cmd="h" data-tip="Heading" aria-label="Heading">H</button>
+            <button class="tb" data-cmd="ul" data-tip="Bulleted list" aria-label="Bulleted list"><span data-icon="listul"></span></button>
+            <button class="tb" data-cmd="ol" data-tip="Numbered list" aria-label="Numbered list"><span data-icon="listol"></span></button>
+            <button class="tb" data-cmd="quote" data-tip="Quote" aria-label="Quote"><span data-icon="quote"></span></button>
+            <button class="tb" id="cmtBtn" data-tip="Comment on the selected words" aria-label="Comment"><span data-icon="comment"></span></button>
+            <span class="sep"></span>
+            <label class="chg" for="showChanges"><input type="checkbox" class="switch" id="showChanges"> Changes since Week 5</label>
+          </div>
+          <div class="body" id="assignBody">
+            <div class="assign-wrap" id="assignWrap">
+              <div class="assignment">
+                <div class="ahead"><h3>Week 6 · Critique</h3><span class="due">due Mon 12 Oct</span></div>
+                <p class="legend-ch" id="legendCh" hidden>Showing changes since Week 5: <ins>green and underlined is added</ins>, <del>red and struck through is removed</del>. Turn it off to keep editing.</p>
+                <div class="sect ro">
+                  <h4>This week's prompt <span>Course framing · read-only · summary</span></h4>
+                  <div class="txt">Immanent critique: criticism that starts from the standards the other side already holds. Can AI help us learn reflexively, including about machines themselves?</div>
+                </div>
+                <div class="sect">
+                  <h4>Chat session <span>at least three turns, inserted from Chat</span></h4>
+                  <div class="turns">
+                    <div><b>You</b> · In §85, is Hegel saying that when my knowing fails the test, the standard changes too?</div>
+                    <div><b class="cname">Companion</b> · You're asking two things: what the end of §85 says, and whether your experience with AI is an example of it…</div>
+                  </div>
+                </div>
+                <div class="sect">
+                  <h4>1 · Machine learning and human learning <span>carried forward from Week 5</span></h4>
+                  <div class="txt aedit" id="q1" contenteditable="true" data-week5="Machine learning adjusts a model so its outputs fit the data it is trained on. Human learning changes how a person understands the world.">Machine learning adjusts a model so its outputs fit the data it is trained on. Human learning changes how a person understands something, and <mark class="cmt" data-c="c1">sometimes what they count as understanding at all</mark>.</div>
+                </div>
+                <div class="sect">
+                  <h4>2 · My most important question <span>carried forward from Week 5</span></h4>
+                  <div class="txt aedit" id="q2" contenteditable="true" data-week5="How can educational AI support a learner's epistemic agency without quietly aligning the learner to the AI system's own norms, values and ways of judging what matters?">How can educational AI support a learner's epistemic agency without quietly aligning the learner to the AI system's own norms, values and ways of judging what matters?</div>
+                </div>
+                <div class="sect">
+                  <h4>3 · What changed this week</h4>
+                  <div class="edit aedit" contenteditable="true" data-ph="Write what changed, and how you'd assess it…"></div>
+                  <div class="grade">Indicative grade <span class="pill">you set this</span> · the companion never fills it in</div>
+                </div>
+              </div>
+              <aside class="comments" id="comments" aria-label="Comments"></aside>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CHAT -->
+      <section class="pane" data-pane="chat" aria-label="Chat">
+        <div class="pane-head">
+          <span class="grip" draggable="true" tabindex="0" role="button" aria-label="Move Chat: drag, or use the arrow keys">⠿</span>
+          <h2>Chat</h2>
+          <span class="sub">with <span class="cname">Companion</span></span>
+          <div class="right">
+            <div class="dd listdd">
+              <button class="ib" id="chatsBtn" data-tip="Your chats" aria-label="Your chats" aria-haspopup="true" aria-expanded="false" aria-controls="chatsMenu"><span data-icon="history"></span></button>
+              <div class="menu panel" id="chatsMenu" hidden>
+                <div class="phead">Your chats</div>
+                <label for="chatSearch" hidden>Search your chats</label>
+                <input type="search" class="psearch" id="chatSearch" placeholder="Search your chats">
+                <div class="grp"><h4>Today</h4>
+                  <button class="it" data-chat="sample" aria-current="true"><span class="mi">When the standard changes</span><span class="md">§85 · 13 Oct</span></button>
+                </div>
+                <div class="grp"><h4>Last 7 days</h4>
+                  <button class="it" data-chat="other"><span class="mi">Knowledge and its criterion</span><span class="md">§84 · 11 Oct</span></button>
+                  <button class="it" data-chat="other"><span class="mi">Immanent critique and my own standards</span><span class="md">Week 6 · 9 Oct</span></button>
+                  <button class="it" data-chat="other"><span class="mi">What is the “new object”?</span><span class="md">§86 · 8 Oct</span></button>
+                </div>
+                <div class="grp"><h4>Earlier</h4>
+                  <button class="it" data-chat="other"><span class="mi">Testing it for yourself</span><span class="md">§78 · 2 Oct</span></button>
+                  <button class="it" data-chat="other"><span class="mi">Who aligns whom?</span><span class="md">Week 5 · 28 Sep</span></button>
+                  <button class="it" data-chat="other"><span class="mi">Knowing as an instrument</span><span class="md">§§73–76 · 24 Sep</span></button>
+                  <button class="it" data-chat="other"><span class="mi">Recognition, and what a companion can't give</span><span class="md">Week 3 · 14 Sep</span></button>
+                </div>
+                <p class="pempty" hidden>No chats match.</p>
+              </div>
+            </div>
+            <button class="ib" id="newChat" data-tip="New chat" aria-label="New chat"><span data-icon="plus"></span></button>
+            <button class="ib focusbtn" data-focus="chat"></button>
+          </div>
+        </div>
+        <div class="body" id="chatScroll">
+          <div class="chatbody" id="convo">
+            <div class="from-you">In §85, is Hegel saying that when my knowing fails the test, the standard changes too, not just my answer? I think something like this happens to me when I study with AI, but I'm not sure.</div>
+
+            <div class="from-companion">
+              <div class="who"><span class="cname">Companion</span><span class="lvl">Friction · Medium</span></div>
+              <p class="opening">You're asking two things: what the end of §85 says, and whether your experience with AI is an example of it. I'll show you the passage and explain it, give you one way to test your example, and leave the verdict on your own case to you.</p>
+              <button class="steps" id="stepsBtn" aria-expanded="false" aria-controls="steps1"><span class="car">▸</span>Read §85, §87 · 1 part held back · quote checked <span class="ok">✓</span></button>
+              <ul class="steplist" id="steps1" hidden>
+                <li>Read: §85, §87 (Baillie translation)</li>
+                <li>Held back: my view of your example. You can reason this one further.</li>
+                <li>Checked: quotation matches §85 <span class="ok">✓</span> · § numbers exist <span class="ok">✓</span></li>
+              </ul>
+              <p>Yes, that is the move at the end of §85. Consciousness compares what it takes the object to be with how it knows the object. When the two don't match, it looks as if only the knowing needs fixing. But the object was always the object as known, so changing the knowing changes the object too. The test ends up testing the standard itself:</p>
+              <blockquote class="quote"><span class="qlabel">Hegel §85 · Baillie</span>“the standard for examining is altered when that, whose criterion this standard was to be, does not hold its ground in the course of the examination”</blockquote>
+              <p>One way to test your example: after studying with AI, did you only swap a wrong answer for a better one? Or did you change what you count as a good answer, or as understanding?</p>
+              <div class="held">
+                <div class="row"><span>One part held back: my view of your example.</span><button class="btn accent" id="showMe" aria-expanded="false" aria-controls="ans1">Show me</button></div>
+                <div id="ans1" hidden>
+                  <span class="qlabel">Companion's reading</span>
+                  <p>If studying with AI made you change what you count as understanding, not only which answer you hold, that fits §85. Only you can tell which happened, so take this as a reading, not a verdict.</p>
+                </div>
+              </div>
+              <div class="counter">
+                <span class="qlabel">Counter-reading · from the text itself (§87)</span>
+                <p>§85 says that all we do is “look on” while consciousness tests itself. But §87 says that seeing the new object as coming out of consciousness's own change is “our doing, what we contribute”. So the onlooker may not be as passive as §85 suggests. The same may be true of a companion that says it only looks on.</p>
+              </div>
+            </div>
+          </div>
+          <div class="empty" id="emptyChat" hidden>
+            <strong class="tagline">Read it. Talk it through. Write it down.</strong>
+            <span>A new chat. Ask about what you're reading, select a passage in Read, or start with one of the buttons below.</span>
+          </div>
+        </div>
+        <div class="composer">
+          <div class="moves" id="moves" role="group" aria-label="Give your message a direction">
+            <button class="move up tl" data-move="Clarify" data-tip="Sharper: reshapes what you said">Clarify</button>
+            <button class="move up tl" data-move="Critique" data-tip="Tested: your own standards against your idea">Critique</button>
+            <button class="move up tl" data-move="Trace" data-tip="Back: brings back your earlier words">Trace</button>
+            <button class="move up" data-move="Deepen" data-tip="Down: what follows from it">Deepen</button>
+            <button class="move up" data-move="Broaden" data-tip="Wider: other views and course concepts">Broaden</button>
+            <button class="move up" data-move="Apply" data-tip="Out: a concrete case">Apply</button>
+          </div>
+          <div class="box">
+            <div class="attached" id="attached" hidden></div>
+            <div class="framenote" id="framenote" hidden><b id="fnMove"></b><span id="fnDoes"></span><button id="hintsBtn" aria-expanded="false" aria-controls="hints" hidden></button><button id="fnRemove">Remove frame</button></div>
+            <ul class="hints" id="hints" hidden></ul>
+            <label for="input" hidden>Message</label>
+            <textarea id="input" rows="2" placeholder="Write to Companion…"></textarea>
+            <div class="brow">
+              <div class="bl">
+                <button class="ib up tl" id="attachBtn" data-tip="Attach a file" aria-label="Attach a file"><span data-icon="clip"></span></button>
+                <button class="ib up tl" id="micBtn" data-tip="Talk instead of typing" aria-label="Voice input" aria-pressed="false"><span data-icon="mic"></span></button>
+                <div class="dd">
+                  <button class="chipbtn up tl" id="frBtn" data-tip="How much the companion pushes back" aria-haspopup="true" aria-expanded="false" aria-controls="frPop">Friction · <b id="fval">Medium</b><span data-icon="chev"></span></button>
+                  <div class="pop" id="frPop" hidden>
+                    <div class="poph"><b>Friction</b><span>How much the companion pushes back</span></div>
+                    <span class="rng"><input type="range" id="friction" min="0" max="3" step="1" value="1" aria-label="Friction level" aria-describedby="fd1"><span class="ticks" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
+                    <div class="stops" id="stops"><button data-v="0">Low</button><button data-v="1">Medium</button><button data-v="2">High</button><button data-v="3">Max</button></div>
+                    <div class="fdescs"><p id="fd0"></p><p id="fd1"></p><p id="fd2"></p><p id="fd3"></p></div>
+                    <p class="fnote">More friction isn't better, just different. Pick what you need now.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="send up" id="send" data-tip="Send" aria-label="Send"><span data-icon="send"></span></button>
+            </div>
+          </div>
+          <p class="caution"><span class="cname">Companion</span> can be wrong. Check its readings against the text.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+
+    <aside class="drawer" id="settings" aria-label="Settings" hidden>
+      <div class="dhead"><h2>Settings</h2><button class="ib" id="closeSettings" data-tip="Close" aria-label="Close settings"><span data-icon="close"></span></button></div>
+      <section>
+        <h3>Companion</h3>
+        <label for="cnameInput">Name</label>
+        <input type="text" id="cnameInput" value="Companion" autocomplete="off">
+        <p>Rename it any time; the chat updates as you type.</p>
+      </section>
+      <section>
+        <h3>Your preferences</h3>
+        <label for="prefs">How you like to work</label>
+        <textarea id="prefs" rows="3" placeholder="For example: I often think aloud in long voice-typed messages. Untangle them and name the threads back to me."></textarea>
+        <p>The companion reads this at the start of every chat.</p>
+      </section>
+      <section>
+        <h3>Chat</h3>
+        <label class="check" for="showMoves"><input type="checkbox" class="switch" id="showMoves" checked> Show the six buttons above the message box</label>
+        <p>Clarify, Critique, Trace, Deepen, Broaden and Apply each give your message a small frame to think in. Hide them if you'd rather start from a blank box.</p>
+      </section>
+      <section>
+        <h3>Always on</h3>
+        <ul>
+          <li>Quotations are checked against the text</li>
+          <li>Claims about the reading are cited (§ or page)</li>
+          <li>The companion labels its own readings</li>
+        </ul>
+        <p>These can't be switched off, because the checks rely on them.</p>
+      </section>
+      <section>
+        <h3>About Articulare</h3>
+        <p class="tagline">Read it. Talk it through. Write it down.</p>
+        <p>Learning with AI in which people stay active thinkers, not passive receivers of information or of the AI.</p>
+        <p>Articulare gives learners a space, after they read, to articulate their thinking and interact with the reading: to talk it through, write it down, and discuss it with AI.</p>
+      </section>
+      <section>
+        <h3>About the companion</h3>
+        <p>An AI reading companion with instructions written for this course. It isn't Hegel, a person or your teacher, and it doesn't grade you. Its quotations are checked against the text before you see them, but its readings can still be wrong, so check them against the text yourself.</p>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<div class="floatbar" id="floatbar" hidden role="group" aria-label="Selection">
+  <button id="fbAsk">Ask in Chat</button>
+  <button id="fbAdd">Add to notebook</button>
+  <button id="fbCmt" hidden>Comment</button>
+</div>
+
+<script>
+(function () {
+  // ---------- Icons ----------
+  var ICONS = {
+    focus: '<polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>',
+    back: '<polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/>',
+    settings: '<line x1="21" y1="4" x2="14" y2="4"/><line x1="10" y1="4" x2="3" y2="4"/><line x1="21" y1="12" x2="12" y2="12"/><line x1="8" y1="12" x2="3" y2="12"/><line x1="21" y1="20" x2="16" y2="20"/><line x1="12" y1="20" x2="3" y2="20"/><line x1="14" y1="2" x2="14" y2="6"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="16" y1="18" x2="16" y2="22"/>',
+    theme: '<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/>',
+    layout: '<rect x="3" y="4" width="18" height="16" rx="2"/><line x1="14" y1="4" x2="14" y2="20"/>',
+    library: '<path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/>',
+    contents: '<path d="M21 12h-8"/><path d="M21 6H8"/><path d="M21 18h-8"/><path d="M3 6v4c0 1.1.9 2 2 2h3"/><path d="M3 10v6c0 1.1.9 2 2 2h3"/>',
+    listul: '<line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><circle cx="4.5" cy="6" r="1.4" fill="currentColor" stroke="none"/><circle cx="4.5" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="4.5" cy="18" r="1.4" fill="currentColor" stroke="none"/>',
+    listol: '<line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><path d="M4 6h1v4"/><path d="M4 10h2"/><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/>',
+    quote: '<path d="M17 6H3"/><path d="M21 12H8"/><path d="M21 18H8"/><path d="M3 12v6"/>',
+    users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    history: '<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/>',
+    plus: '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>',
+    pages: '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>',
+    newpage: '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="14 3 14 9 20 9"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/>',
+    insert: '<rect x="4" y="4" width="16" height="16" rx="3"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>',
+    send: '<line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>',
+    close: '<line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>',
+    lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+    eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    upload: '<path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/><polyline points="16 8 12 4 8 8"/><line x1="12" y1="4" x2="12" y2="16"/>',
+    mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><line x1="12" y1="18" x2="12" y2="21"/>',
+    clip: '<path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/>',
+    chev: '<polyline points="6 9 12 15 18 9"/>',
+    comment: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/>',
+    cols3: '<rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/><line x1="15" y1="4" x2="15" y2="20"/>',
+    stack2: '<rect x="3" y="4" width="18" height="16" rx="2"/><line x1="11" y1="4" x2="11" y2="20"/><line x1="11" y1="12" x2="21" y2="12"/>',
+    highlighter: '<path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/>',
+    info: '<circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="7.8" r="1" fill="currentColor"/>'
+  };
+  function icon(name) {
+    return '<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONS[name] + '</svg>';
+  }
+  document.querySelectorAll('[data-icon]').forEach(function (s) { s.outerHTML = icon(s.dataset.icon); });
+
+  // ---------- Helpers ----------
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function pretty(iso) {
+    var p = (iso || '').split('-');
+    return p.length === 3 ? (+p[2]) + ' ' + MONTHS[+p[1] - 1] + ' ' + p[0] : iso;
+  }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  var toast = document.getElementById('toast');
+  var toastTimer = null;
+  function say(msg, stay) {
+    toast.textContent = msg;
+    toast.hidden = false;
+    clearTimeout(toastTimer);
+    if (!stay) toastTimer = setTimeout(function () { toast.hidden = true; }, 2800);
+  }
+
+  var root = document.documentElement;
+
+  // ---------- Layout ----------
+  var DEFAULT = { on: { read: true, chat: true, write: false }, order: ['read', 'write', 'chat'], w: { read: 1.5, write: 1.25, chat: 1 }, focus: 'read', scale: 1, prevOn: null, arrange: 'side', cols: [1.25, 1], rows: [1, 1] };
+  var MINW = { read: 300, chat: 320, write: 320 };
+  var CLOSE_PAST = 90;
+  var KEY = 'articulare-mockup-layout-v1';
+  var NAMES = { read: 'Read', chat: 'Chat', write: 'Write' };
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function load() {
+    try {
+      var v = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (v && v.on && v.order && v.order.length === 3 && v.w) return Object.assign(clone(DEFAULT), v);
+    } catch (e) {}
+    return clone(DEFAULT);
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  var state = load();
+  var app = document.getElementById('app');
+  var panesEl = document.getElementById('panes');
+  var paneEls = {};
+  panesEl.querySelectorAll('.pane').forEach(function (p) { paneEls[p.dataset.pane] = p; });
+  var toggles = Array.prototype.slice.call(document.querySelectorAll('.tg'));
+  var focusBtns = Array.prototype.slice.call(document.querySelectorAll('.focusbtn'));
+  var narrow = false;
+
+  function visible() { return narrow ? [state.focus] : state.order.filter(function (k) { return state.on[k]; }); }
+  function firstOn() { return state.order.filter(function (k) { return state.on[k]; })[0] || 'read'; }
+
+  function render() {
+    // Remember where each visible space was scrolled, so re-arranging never loses your place
+    var bodies = Array.prototype.slice.call(panesEl.querySelectorAll('.body'));
+    bodies.forEach(function (bd) { if (!bd.closest('.pane').hidden) bd.dataset.st = bd.scrollTop; });
+    panesEl.querySelectorAll('.divider').forEach(function (d) { d.remove(); });
+    var vis = visible();
+    var current = Array.prototype.slice.call(panesEl.querySelectorAll('.pane')).map(function (p) { return p.dataset.pane; });
+    var reorder = current.join() !== state.order.join();
+    var stacked = !narrow && vis.length === 3 && state.arrange === 'stack';
+    panesEl.classList.toggle('stack', stacked);
+    state.order.forEach(function (k) {
+      var p = paneEls[k];
+      if (reorder) panesEl.appendChild(p);
+      p.hidden = vis.indexOf(k) === -1;
+      p.classList.remove('closing');
+      p.style.flex = narrow ? '1 1 0' : state.w[k] + ' 1 0';
+      p.style.gridColumn = '';
+      p.style.gridRow = '';
+    });
+    // Stacked: the first space runs full height on the left; the other two share the right-hand column
+    if (stacked) {
+      var pa = paneEls[vis[0]], pb = paneEls[vis[1]], pc = paneEls[vis[2]];
+      pa.style.gridColumn = '1'; pa.style.gridRow = '1 / 4';
+      pb.style.gridColumn = '3'; pb.style.gridRow = '1';
+      pc.style.gridColumn = '3'; pc.style.gridRow = '3';
+      var dv = makeDivider('vertical'), dh = makeDivider('horizontal');
+      dv.style.gridColumn = '2'; dv.style.gridRow = '1 / 4';
+      dh.style.gridColumn = '3'; dh.style.gridRow = '2';
+      dh.classList.add('h');
+      panesEl.appendChild(dv);
+      panesEl.appendChild(dh);
+      bindGridDivider(dv, 'col', pa, pb);
+      bindGridDivider(dh, 'row', pb, pc);
+      panesEl.style.gridTemplateColumns = state.cols[0] + 'fr 1px ' + state.cols[1] + 'fr';
+      panesEl.style.gridTemplateRows = state.rows[0] + 'fr 1px ' + state.rows[1] + 'fr';
+    } else {
+      panesEl.style.gridTemplateColumns = '';
+      panesEl.style.gridTemplateRows = '';
+    }
+    var ab = document.getElementById('arrangeBtn');
+    ab.hidden = narrow || vis.length !== 3;
+    ab.innerHTML = icon(state.arrange === 'stack' ? 'cols3' : 'stack2');
+    ab.dataset.tip = state.arrange === 'stack' ? 'Put all three side by side' : 'Stack the two right-hand spaces';
+    ab.setAttribute('aria-label', ab.dataset.tip);
+    if (!narrow && !stacked) {
+      for (var i = 0; i < vis.length - 1; i++) {
+        var d = el('div', 'divider');
+        d.setAttribute('role', 'separator');
+        d.setAttribute('aria-orientation', 'vertical');
+        d.setAttribute('aria-label', 'Resize: drag, or use the arrow keys');
+        d.tabIndex = 0;
+        d.dataset.left = vis[i];
+        d.dataset.right = vis[i + 1];
+        paneEls[vis[i]].after(d);
+        bindDivider(d);
+      }
+    }
+    toggles.forEach(function (t) {
+      var k = t.dataset.pane;
+      t.setAttribute('aria-pressed', String(narrow ? state.focus === k : !!state.on[k]));
+    });
+    var focused = !narrow && vis.length === 1 && !!state.prevOn;
+    focusBtns.forEach(function (b) {
+      var k = b.dataset.focus;
+      var mine = focused && vis[0] === k;
+      b.hidden = vis.length === 1 && !mine;
+      b.innerHTML = icon(mine ? 'back' : 'focus');
+      b.dataset.tip = mine ? 'Back to what you had open' : 'Focus on ' + NAMES[k];
+      b.setAttribute('aria-label', b.dataset.tip);
+      b.setAttribute('aria-pressed', String(mine));
+    });
+    app.classList.toggle('narrow', narrow);
+    app.style.setProperty('--scale', state.scale);
+    document.getElementById('sizeVal').textContent = Math.round(state.scale * 100) + '%';
+    bodies.forEach(function (bd) { if (!bd.closest('.pane').hidden && bd.dataset.st) bd.scrollTop = +bd.dataset.st; });
+  }
+
+  toggles.forEach(function (t) {
+    t.addEventListener('click', function () {
+      var k = t.dataset.pane;
+      state.prevOn = null;
+      if (narrow) { state.focus = k; state.on[k] = true; }
+      else if (state.on[k]) {
+        if (Object.keys(state.on).filter(function (x) { return state.on[x]; }).length === 1) { say('At least one space stays open.'); return; }
+        state.on[k] = false;
+        if (state.focus === k) state.focus = firstOn();
+      } else { state.on[k] = true; state.focus = k; }
+      render(); save();
+    });
+  });
+  document.getElementById('arrangeBtn').addEventListener('click', function () {
+    state.arrange = state.arrange === 'stack' ? 'side' : 'stack';
+    render();
+    save();
+  });
+  focusBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = b.dataset.focus, vis = visible();
+      if (state.prevOn && vis.length === 1 && vis[0] === k) { state.on = state.prevOn; state.prevOn = null; }
+      else { state.prevOn = clone(state.on); state.on = { read: false, chat: false, write: false }; state.on[k] = true; state.focus = k; }
+      render(); save();
+      if (!b.hidden) b.focus();
+    });
+  });
+
+  function makeDivider(orientation) {
+    var d = el('div', 'divider');
+    d.setAttribute('role', 'separator');
+    d.setAttribute('aria-orientation', orientation);
+    d.setAttribute('aria-label', 'Resize: drag, or use the arrow keys');
+    d.tabIndex = 0;
+    return d;
+  }
+  function bindGridDivider(d, axis, first, second) {
+    var key = axis === 'col' ? 'cols' : 'rows';
+    d.addEventListener('pointerdown', function (e) {
+      e.preventDefault();
+      d.setPointerCapture(e.pointerId);
+      var r1 = first.getBoundingClientRect(), r2 = second.getBoundingClientRect();
+      var s1 = axis === 'col' ? r1.width : r1.height, s2 = axis === 'col' ? r2.width : r2.height;
+      var total = s1 + s2, p0 = axis === 'col' ? e.clientX : e.clientY, MIN = axis === 'col' ? 300 : 150;
+      d.classList.add('active');
+      function move(ev) {
+        var n1 = Math.max(MIN, Math.min(total - MIN, s1 + (axis === 'col' ? ev.clientX : ev.clientY) - p0));
+        state[key] = [n1, total - n1];
+        if (axis === 'col') panesEl.style.gridTemplateColumns = n1 + 'fr 1px ' + (total - n1) + 'fr';
+        else panesEl.style.gridTemplateRows = n1 + 'fr 1px ' + (total - n1) + 'fr';
+      }
+      function up() {
+        d.removeEventListener('pointermove', move);
+        d.removeEventListener('pointerup', up);
+        d.removeEventListener('pointercancel', up);
+        d.classList.remove('active');
+        save();
+      }
+      d.addEventListener('pointermove', move);
+      d.addEventListener('pointerup', up);
+      d.addEventListener('pointercancel', up);
+    });
+    d.addEventListener('keydown', function (e) {
+      var dec = axis === 'col' ? 'ArrowLeft' : 'ArrowUp', inc = axis === 'col' ? 'ArrowRight' : 'ArrowDown';
+      if (e.key !== dec && e.key !== inc) return;
+      e.preventDefault();
+      var t = state[key][0] + state[key][1], n1 = state[key][0] + (e.key === dec ? -1 : 1) * 0.06 * t;
+      if (n1 < t * 0.25 || n1 > t * 0.75) return;
+      state[key] = [n1, t - n1];
+      render();
+      save();
+      var again = panesEl.querySelector(axis === 'row' ? '.divider.h' : '.divider:not(.h)');
+      if (again) again.focus();
+    });
+  }
+  function bindDivider(d) {
+    var L = d.dataset.left, R = d.dataset.right;
+    d.addEventListener('pointerdown', function (e) {
+      e.preventDefault();
+      d.setPointerCapture(e.pointerId);
+      var lpx = paneEls[L].getBoundingClientRect().width, rpx = paneEls[R].getBoundingClientRect().width;
+      var tpx = lpx + rpx, tw = state.w[L] + state.w[R], x0 = e.clientX;
+      var mL = Math.min(MINW[L], tpx / 2), mR = Math.min(MINW[R], tpx / 2);
+      var closing = null;
+      d.classList.add('active');
+      function move(ev) {
+        var want = lpx + ev.clientX - x0;
+        var nl = Math.max(mL, Math.min(tpx - mR, want));
+        state.w[L] = tw * nl / tpx; state.w[R] = tw - state.w[L];
+        paneEls[L].style.flex = state.w[L] + ' 1 0';
+        paneEls[R].style.flex = state.w[R] + ' 1 0';
+        var c = want < mL - CLOSE_PAST ? L : (tpx - want) < mR - CLOSE_PAST ? R : null;
+        if (c !== closing) {
+          if (closing) paneEls[closing].classList.remove('closing');
+          closing = c;
+          if (c) { paneEls[c].classList.add('closing'); say('Let go to close ' + NAMES[c], true); } else toast.hidden = true;
+        }
+      }
+      function up() {
+        d.removeEventListener('pointermove', move);
+        d.removeEventListener('pointerup', up);
+        d.removeEventListener('pointercancel', up);
+        d.classList.remove('active');
+        if (closing) {
+          state.on[closing] = false; state.prevOn = null;
+          state.w[L] = state.w[R] = tw / 2;
+          if (state.focus === closing) state.focus = firstOn();
+          render();
+          say(NAMES[closing] + ' closed. Turn it back on at the top.');
+        }
+        save();
+      }
+      d.addEventListener('pointermove', move);
+      d.addEventListener('pointerup', up);
+      d.addEventListener('pointercancel', up);
+    });
+    d.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      var tw = state.w[L] + state.w[R], nl = state.w[L] + (e.key === 'ArrowLeft' ? -1 : 1) * 0.08 * tw;
+      if (nl < tw * 0.2 || nl > tw * 0.8) return;
+      state.w[L] = nl; state.w[R] = tw - nl;
+      render(); save();
+      var again = panesEl.querySelector('.divider[data-left="' + L + '"]');
+      if (again) again.focus();
+    });
+  }
+
+  var dragging = null;
+  function swap(a, b) {
+    var i = state.order.indexOf(a), j = state.order.indexOf(b), t = state.order[i];
+    state.order[i] = state.order[j]; state.order[j] = t;
+    render(); save();
+  }
+  document.querySelectorAll('.grip').forEach(function (g) {
+    var k = g.closest('.pane').dataset.pane;
+    g.addEventListener('dragstart', function (e) {
+      dragging = k; e.dataTransfer.effectAllowed = 'move';
+      try { e.dataTransfer.setData('text/plain', k); } catch (err) {}
+      paneEls[k].classList.add('dragging');
+    });
+    g.addEventListener('dragend', function () {
+      dragging = null;
+      Object.keys(paneEls).forEach(function (x) { paneEls[x].classList.remove('dragging', 'drop'); });
+    });
+    g.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      var vis = visible(), target = vis[vis.indexOf(k) + (e.key === 'ArrowLeft' ? -1 : 1)];
+      if (target) { swap(k, target); g.focus(); }
+    });
+  });
+  Object.keys(paneEls).forEach(function (k) {
+    var p = paneEls[k];
+    p.addEventListener('dragover', function (e) { if (!dragging || dragging === k) return; e.preventDefault(); p.classList.add('drop'); });
+    p.addEventListener('dragleave', function (e) { if (!p.contains(e.relatedTarget)) p.classList.remove('drop'); });
+    p.addEventListener('drop', function (e) { if (!dragging) return; e.preventDefault(); p.classList.remove('drop'); if (dragging !== k) swap(dragging, k); });
+  });
+
+  document.getElementById('reset').addEventListener('click', function () {
+    var sc = state.scale; state = clone(DEFAULT); state.scale = sc;
+    render(); save(); say('Back to the default: Read and Chat.');
+  });
+  function setScale(d) { state.scale = Math.round(Math.max(0.85, Math.min(1.35, state.scale + d)) * 100) / 100; render(); save(); }
+  document.getElementById('smaller').addEventListener('click', function () { setScale(-0.1); });
+  document.getElementById('bigger').addEventListener('click', function () { setScale(0.1); });
+  document.getElementById('theme').addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme');
+    var dark = cur ? cur === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    root.setAttribute('data-theme', dark ? 'light' : 'dark');
+  });
+
+  // ---------- Menus ----------
+  var menus = [];
+  function closeMenus() { menus.forEach(function (m) { m.menu.hidden = true; m.btn.setAttribute('aria-expanded', 'false'); }); }
+  function wireMenu(btn, menu, onOpen) {
+    menus.push({ btn: btn, menu: menu });
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = menu.hidden;
+      closeMenus();
+      if (open) {
+        if (onOpen) onOpen();
+        if (menu.classList.contains('panel')) {
+          menu.style.top = btn.closest('.pane').querySelector('.pane-head').offsetHeight + 'px';
+          var ps = menu.querySelector('.psearch');
+          if (ps) { ps.value = ''; filterPanel(menu, ''); }
+        }
+        menu.hidden = false;
+        btn.setAttribute('aria-expanded', 'true');
+        var f = menu.querySelector('input, button');
+        if (f && !menu.hasAttribute('data-nofocus')) f.focus();
+      }
+    });
+  }
+  function filterPanel(panel, q) {
+    q = q.trim().toLowerCase();
+    var any = false;
+    panel.querySelectorAll('.grp').forEach(function (g) {
+      var vis = false;
+      g.querySelectorAll('.it').forEach(function (it) {
+        var m = !q || it.textContent.toLowerCase().indexOf(q) >= 0;
+        it.hidden = !m;
+        vis = vis || m;
+      });
+      g.hidden = !vis;
+      any = any || vis;
+    });
+    var e = panel.querySelector('.pempty');
+    if (e) e.hidden = any;
+  }
+  document.addEventListener('input', function (e) {
+    if (e.target.classList && e.target.classList.contains('psearch')) filterPanel(e.target.closest('.panel'), e.target.value);
+  });
+  document.addEventListener('click', function (e) {
+    menus.forEach(function (m) {
+      if (!m.menu.hidden && !m.menu.contains(e.target) && !m.btn.contains(e.target)) { m.menu.hidden = true; m.btn.setAttribute('aria-expanded', 'false'); }
+    });
+  });
+
+  wireMenu(document.getElementById('sizeBtn'), document.getElementById('sizeMenu'));
+
+  // ---------- Settings ----------
+  var settings = document.getElementById('settings');
+  var sBtn = document.getElementById('openSettings');
+  var cnameInput = document.getElementById('cnameInput');
+  var input = document.getElementById('input');
+  function closeSettings() { settings.hidden = true; sBtn.setAttribute('aria-expanded', 'false'); }
+  sBtn.addEventListener('click', function () {
+    var open = settings.hidden;
+    closeMenus();
+    settings.hidden = !open;
+    sBtn.setAttribute('aria-expanded', String(open));
+    if (open) cnameInput.focus();
+  });
+  document.getElementById('closeSettings').addEventListener('click', function () { closeSettings(); sBtn.focus(); });
+  document.getElementById('showMoves').addEventListener('change', function (e) { document.getElementById('moves').hidden = !e.target.checked; });
+  cnameInput.addEventListener('input', function () {
+    var n = cnameInput.value.trim() || 'Companion';
+    document.querySelectorAll('.cname').forEach(function (e) { e.textContent = n; });
+    input.placeholder = 'Write to ' + n + '…';
+  });
+
+  // ---------- Read ----------
+  wireMenu(document.getElementById('libBtn'), document.getElementById('libMenu'));
+  document.querySelectorAll('#libMenu button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      closeMenus();
+      if (b.dataset.lib === 'upload') say('Uploading isn’t part of this mockup.');
+      else if (b.dataset.lib) say('Only Hegel’s Introduction is in this mockup.');
+    });
+  });
+  wireMenu(document.getElementById('tocBtn'), document.getElementById('tocMenu'));
+  document.querySelectorAll('#tocMenu [data-toc]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      closeMenus();
+      var id = b.dataset.toc;
+      if (id === 'none') { say('Only §§83–87 are in this mockup.'); return; }
+      document.getElementById(id).scrollIntoView({ block: 'start', behavior: 'smooth' });
+    });
+  });
+  function openRead(sec) {
+    if (!state.on.read || narrow) { state.on.read = true; state.prevOn = null; if (narrow) state.focus = 'read'; render(); save(); }
+    var target = document.querySelector('.reading p[data-sec="' + sec + '"]');
+    if (target) target.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  }
+
+  // ---------- Chat ----------
+  var stepsBtn = document.getElementById('stepsBtn');
+  stepsBtn.addEventListener('click', function () {
+    var list = document.getElementById('steps1'), open = list.hidden;
+    list.hidden = !open;
+    stepsBtn.setAttribute('aria-expanded', String(open));
+  });
+  var showMe = document.getElementById('showMe');
+  showMe.addEventListener('click', function () {
+    var ans = document.getElementById('ans1'), open = ans.hidden;
+    ans.hidden = !open;
+    showMe.setAttribute('aria-expanded', String(open));
+    showMe.textContent = open ? 'Hide' : 'Show me';
+  });
+  // What the tool adds (a direction, a quoted passage) sits above her words as a removable chip.
+  // Her own text is never edited by a button.
+  var sendBtn = document.getElementById('send');
+  var attached = document.getElementById('attached');
+  var moveBtns = Array.prototype.slice.call(document.querySelectorAll('.move'));
+  var direction = null, quote = null, frame = null;
+  // Each of the six buttons gives the message a small frame: labelled lines that help structure the
+  // thinking, plus one visible line saying what the Companion will do with it. One frame per message.
+  // FRAMES are the plain fallback. In the real app a drafter adapts the frame to the moment; DRAFTED
+  // shows one example (Critique, in the §85 chat): her own words and hints, never the answer.
+  var FRAMES = {
+    Clarify: { slots: ['What I\u2019m trying to say: ', 'The part I can\u2019t quite put into words: '], does: 'The Companion will offer sharper ways to say it, and check they still mean what you meant.' },
+    Critique: { slots: ['My idea: ', 'The standard I\u2019m judging it by: '], does: 'The Companion will test your idea against the standard you name, not its own.' },
+    Trace: { slots: ['What I think now: ', 'When I thought differently (optional): '], does: 'The Companion will bring back what you wrote or said before, with dates, and show what changed.' },
+    Deepen: { slots: ['My idea: ', 'What I think follows from it: '], does: 'The Companion will follow your idea further: what it commits you to, and where it leads.' },
+    Broaden: { slots: ['My idea: ', 'A view or course concept to compare (optional): '], does: 'The Companion will bring in other readings and course concepts, each labelled with its source.' },
+    Apply: { slots: ['The idea: ', 'A case to test it on (or leave empty for a suggestion): '], does: 'The Companion will work through a concrete case with you.' }
+  };
+  var DRAFTED = {
+    Critique: {
+      slots: ['My idea: ', 'The standard I\u2019m judging it by: ', 'Where it might fall short: '],
+      first: 'when I study with AI, the standard changes too, not just my answer',
+      hints: [
+        { text: 'Line 1 is drafted from your last message, in your own words. Change it if it isn\u2019t quite what you meant.' },
+        { text: 'For line 2, a standard you\u2019ve used before, from your Week 5 reflection: \u201cwhether I can still reconstruct, defend, challenge and revise the judgment myself\u201d.', use: 'whether I can still reconstruct, defend, challenge and revise the judgment myself', slot: 1 },
+        { text: 'For line 3, ask yourself: judged by that standard, where could your idea fail?' }
+      ]
+    }
+  };
+  var framenote = document.getElementById('framenote'), hintsEl = document.getElementById('hints');
+  var hintsBtn = document.getElementById('hintsBtn'), hintsOpen = false;
+  hintsBtn.addEventListener('click', function () { hintsOpen = !hintsOpen; renderFrame(); });
+  // Read the frame's lines back. Anything after a blank line is her own extra text, outside the frame.
+  function parse(text, slots) {
+    if (text.indexOf(slots[0]) !== 0) return null;
+    var vals = [], pos = 0;
+    for (var i = 0; i < slots.length; i++) {
+      var start = text.indexOf(slots[i], pos);
+      if (start < 0) return null;
+      var from = start + slots[i].length, next;
+      if (i + 1 < slots.length) { next = text.indexOf(slots[i + 1], from); if (next < 0) return null; }
+      else { next = text.indexOf('\n\n', from); if (next < 0) next = text.length; }
+      vals.push(text.slice(from, next).trim());
+      pos = next;
+    }
+    return { vals: vals, extra: text.slice(pos).trim() };
+  }
+  function build(slots, vals, extra) {
+    return slots.map(function (l, i) { return l + (vals[i] || ''); }).join('\n') + (extra ? '\n\n' + extra : '');
+  }
+  function contentOf(text) {
+    var t = text;
+    if (frame) frame.slots.forEach(function (l) { t = t.replace(l, ''); });
+    return t.trim();
+  }
+  function autoGrow() { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 220) + 'px'; }
+  function syncSend() { sendBtn.classList.toggle('ready', !!contentOf(input.value) || !!quote); autoGrow(); }
+  input.addEventListener('input', syncSend);
+  // Put the cursor where she needs to write next: the first empty line of the frame
+  function placeCursor() {
+    var pos = input.value.length;
+    if (frame) {
+      var p = parse(input.value, frame.slots);
+      if (p) {
+        for (var i = 0; i < frame.slots.length; i++) {
+          if (!p.vals[i]) { pos = input.value.indexOf(frame.slots[i]) + frame.slots[i].length; break; }
+        }
+      }
+    }
+    input.focus();
+    input.setSelectionRange(pos, pos);
+  }
+  function renderFrame() {
+    framenote.hidden = !direction;
+    hintsEl.innerHTML = '';
+    var hasHints = !!(direction && frame && frame.hints);
+    hintsBtn.hidden = !hasHints;
+    hintsBtn.setAttribute('aria-expanded', String(hasHints && hintsOpen));
+    if (hasHints) hintsBtn.textContent = hintsOpen ? 'Hide hints' : 'Hints (' + frame.hints.length + ')';
+    hintsEl.hidden = !(hasHints && hintsOpen);
+    if (direction) {
+      document.getElementById('fnMove').textContent = direction;
+      document.getElementById('fnDoes').textContent = FRAMES[direction].does;
+      (frame.hints || []).forEach(function (h) {
+        var li = el('li', null, h.text);
+        if (h.use) {
+          var b = el('button', null, 'Use it');
+          b.addEventListener('click', function () {
+            var p = parse(input.value, frame.slots) || { vals: [input.value.trim()], extra: '' };
+            p.vals[h.slot] = h.use;
+            input.value = build(frame.slots, p.vals, p.extra);
+            syncSend();
+            placeCursor();
+          });
+          li.appendChild(b);
+        }
+        hintsEl.appendChild(li);
+      });
+    }
+    moveBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.move === direction)); });
+    syncSend();
+  }
+  // Her words move into the frame's first line; a second button swaps the frame; Remove takes it off.
+  function setFrame(move) {
+    // Only line 1 carries into a new frame; her other lines stay below it as plain text, never relabelled.
+    var p = frame ? parse(input.value, frame.slots) : null;
+    var first = p ? p.vals[0] : input.value.trim();
+    var keep = p ? p.vals.slice(1).concat([p.extra]).filter(Boolean).join('\n') : '';
+    direction = move;
+    hintsOpen = false;
+    if (!move) {
+      frame = null;
+      input.value = [first, keep].filter(Boolean).join('\n');
+    } else {
+      frame = DRAFTED[move] && !convo.hidden ? DRAFTED[move] : FRAMES[move];
+      if (!first && frame.first) first = frame.first;
+      input.value = build(frame.slots, [first], keep);
+    }
+    renderFrame();
+    placeCursor();
+  }
+  function renderAttached() {
+    attached.innerHTML = '';
+    if (quote) {
+      var card = el('div', 'qchip');
+      var body = el('div', 'qbody');
+      body.appendChild(el('span', 'qlabel', 'Hegel §' + quote.sec + ' · Baillie'));
+      body.appendChild(el('span', 'qt', '\u201c' + quote.text + '\u201d'));
+      card.appendChild(body);
+      var x1 = el('button', null, '\u00d7');
+      x1.setAttribute('aria-label', 'Remove the quoted passage');
+      x1.addEventListener('click', function () { quote = null; renderAttached(); input.focus(); });
+      card.appendChild(x1);
+      attached.appendChild(card);
+    }
+    attached.hidden = !quote;
+    syncSend();
+  }
+  moveBtns.forEach(function (b) {
+    b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', function () { setFrame(direction === b.dataset.move ? null : b.dataset.move); });
+  });
+  document.getElementById('fnRemove').addEventListener('click', function () { setFrame(null); });
+  var micBtn = document.getElementById('micBtn');
+  function companionName() { return document.querySelector('.cname').textContent; }
+  function stopMic() {
+    micBtn.setAttribute('aria-pressed', 'false');
+    micBtn.classList.remove('listening');
+    input.placeholder = 'Write to ' + companionName() + '\u2026';
+  }
+  micBtn.addEventListener('click', function () {
+    if (micBtn.getAttribute('aria-pressed') === 'true') { stopMic(); return; }
+    micBtn.setAttribute('aria-pressed', 'true');
+    micBtn.classList.add('listening');
+    input.placeholder = 'Listening\u2026 (voice input isn\u2019t built in this mockup)';
+  });
+  document.getElementById('attachBtn').addEventListener('click', function () {
+    say('Attaching isn\u2019t part of this mockup. A file you attach would also join your Library.');
+  });
+  document.getElementById('send').addEventListener('click', function () {
+    if (input.value.trim() || quote) say('Sending isn’t part of this mockup.');
+    stopMic();
+    input.value = '';
+    direction = null;
+    frame = null;
+    quote = null;
+    renderAttached();
+    renderFrame();
+  });
+  var convo = document.getElementById('convo'), emptyChat = document.getElementById('emptyChat');
+  var chatItems = Array.prototype.slice.call(document.querySelectorAll('#chatsMenu [data-chat]'));
+  function markChat(item) { chatItems.forEach(function (c) { c.setAttribute('aria-current', String(c === item)); }); }
+  wireMenu(document.getElementById('chatsBtn'), document.getElementById('chatsMenu'));
+  document.getElementById('newChat').addEventListener('click', function () {
+    convo.hidden = true; emptyChat.hidden = false; markChat(null); input.focus();
+  });
+  chatItems.forEach(function (c) {
+    c.addEventListener('click', function () {
+      closeMenus();
+      if (c.dataset.chat === 'sample') { convo.hidden = false; emptyChat.hidden = true; markChat(c); }
+      else say('Only today’s chat is in this mockup.');
+    });
+  });
+
+  var LEVELS = ['Low', 'Medium', 'High', 'Max'];
+  var DESC = [
+    'Answers straight away and builds on your ideas.',
+    'Uses judgement: asks when you can reason further, explains when you need it.',
+    'Often holds back the conclusion so you can reach it first; presses on weak points; brings in counter-readings.',
+    'Always asks for your view first and keeps answers behind \u201cShow me\u201d; argues the other side.'
+  ];
+  var fr = document.getElementById('friction');
+  var stops = Array.prototype.slice.call(document.querySelectorAll('#stops button'));
+  function syncFriction() {
+    var v = +fr.value;
+    document.getElementById('fval').textContent = LEVELS[v];
+    fr.setAttribute('aria-valuetext', LEVELS[v]);
+    fr.style.setProperty('--pct', 'calc(7px + (100% - 14px) * ' + (v / 3) + ')');
+    for (var k = 0; k < 4; k++) {
+      var pk = document.getElementById('fd' + k);
+      pk.textContent = DESC[k];
+      pk.classList.toggle('on', k === v);
+      pk.setAttribute('aria-hidden', String(k !== v));
+    }
+    fr.setAttribute('aria-describedby', 'fd' + v);
+    stops.forEach(function (b) { b.classList.toggle('on', +b.dataset.v === v); });
+  }
+  fr.addEventListener('input', syncFriction);
+  stops.forEach(function (b) {
+    b.style.left = 'calc(7px + (100% - 14px) * ' + (+b.dataset.v / 3) + ')';
+    b.addEventListener('click', function () { fr.value = b.dataset.v; syncFriction(); fr.focus(); });
+  });
+  syncFriction();
+  wireMenu(document.getElementById('frBtn'), document.getElementById('frPop'));
+
+  // ---------- Write ----------
+  var view = 'notebook';
+  var pagesBtn = document.getElementById('pagesBtn'), pagesMenu = document.getElementById('pagesMenu');
+  var newPageWrap = document.getElementById('newPageWrap');
+  var wTabs = Array.prototype.slice.call(document.querySelectorAll('.wtab'));
+  wTabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      view = t.dataset.w;
+      wTabs.forEach(function (x) { x.setAttribute('aria-selected', String(x === t)); });
+      document.getElementById('w-notebook').hidden = view !== 'notebook';
+      document.getElementById('w-assignment').hidden = view !== 'assignment';
+      if (view === 'assignment') requestAnimationFrame(layoutComments);
+      newPageWrap.hidden = view !== 'notebook';
+      pagesBtn.dataset.tip = view === 'notebook' ? 'Pages' : 'Weeks';
+      pagesBtn.setAttribute('aria-label', pagesBtn.dataset.tip);
+      closeMenus();
+    });
+  });
+  document.querySelectorAll('.toolbar [data-cmd]').forEach(function (b) {
+    b.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    b.addEventListener('click', function () {
+      var c = b.dataset.cmd;
+      try {
+        if (c === 'bold' || c === 'italic') document.execCommand(c);
+        else if (c === 'h') document.execCommand('formatBlock', false, 'h3');
+        else if (c === 'ul') document.execCommand('insertUnorderedList');
+        else if (c === 'ol') document.execCommand('insertOrderedList');
+        else if (c === 'quote') document.execCommand('formatBlock', false, 'blockquote');
+      } catch (err) {}
+    });
+  });
+
+  // ---------- Text colour and highlight (basic word-editor features, in both editors) ----------
+  // Colours are mid-tones and highlights are see-through, so both read in light and dark.
+  var TEXT_COLORS = [['Default', ''], ['Red', '#c0503a'], ['Orange', '#c2771f'], ['Green', '#4d8f5a'], ['Blue', '#4a78b5'], ['Purple', '#8063b0'], ['Grey', '#8a837a']];
+  var HIGHLIGHTS = [['None', ''], ['Yellow', 'rgba(240, 200, 60, 0.38)'], ['Green', 'rgba(110, 180, 110, 0.32)'], ['Blue', 'rgba(90, 150, 220, 0.30)'], ['Pink', 'rgba(230, 120, 150, 0.30)'], ['Orange', 'rgba(240, 150, 60, 0.32)']];
+  var savedRange = null;
+  function editableHost(node) {
+    var h = node && (node.nodeType === 1 ? node : node.parentElement);
+    return h ? h.closest('.doc, .ptitle, .aedit:not(.diffing)') : null;
+  }
+  function saveSelection() {
+    var sel = window.getSelection();
+    savedRange = sel.rangeCount && !sel.isCollapsed && editableHost(sel.getRangeAt(0).commonAncestorContainer) ? sel.getRangeAt(0).cloneRange() : null;
+  }
+  function restoreSelection() {
+    if (!savedRange) return false;
+    var host = editableHost(savedRange.commonAncestorContainer);
+    if (host) host.focus();
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(savedRange);
+    return true;
+  }
+  function unwrap(n) { var p = n.parentNode; while (n.firstChild) p.insertBefore(n.firstChild, n); n.remove(); }
+  // "Default" and "None" paint a marker colour, then strip it, so the browser does the splitting for us
+  function clearMarker(prop, value) {
+    document.querySelectorAll('.doc [style], .ptitle [style], .aedit [style]').forEach(function (n) {
+      if (n.style.getPropertyValue(prop).replace(/\s/g, '') === value) {
+        n.style.removeProperty(prop);
+        if (!(n.getAttribute('style') || '').trim() && (n.tagName === 'SPAN' || n.tagName === 'FONT')) unwrap(n);
+      }
+    });
+  }
+  function applyColor(kind, value) {
+    if (!restoreSelection()) { say('Select some words first, then choose a colour.'); return; }
+    try { document.execCommand('styleWithCSS', false, true); } catch (e) {}
+    if (kind === 'text') {
+      if (value) document.execCommand('foreColor', false, value);
+      else { document.execCommand('foreColor', false, '#000001'); clearMarker('color', 'rgb(0,0,1)'); }
+    } else {
+      if (value) document.execCommand('hiliteColor', false, value);
+      else { document.execCommand('hiliteColor', false, '#000002'); clearMarker('background-color', 'rgb(0,0,2)'); }
+    }
+    savedRange = null;
+  }
+  function buildColorControls(toolbar) {
+    var italic = toolbar.querySelector('[data-cmd="italic"]');
+    if (!italic) return;
+    [['hl', 'Highlight', HIGHLIGHTS], ['text', 'Text colour', TEXT_COLORS]].forEach(function (spec) {
+      var kind = spec[0], dd = el('div', 'dd');
+      var btn = el('button', 'tb');
+      btn.dataset.tip = spec[1];
+      btn.setAttribute('aria-label', spec[1]);
+      btn.setAttribute('aria-haspopup', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.innerHTML = kind === 'text' ? '<span class="tcolor">A<i></i></span>' : icon('highlighter');
+      var menu = el('div', 'menu swatches');
+      menu.hidden = true;
+      menu.setAttribute('data-nofocus', '');
+      menu.appendChild(el('h4', null, spec[1]));
+      var row = el('div', 'swrow');
+      spec[2].forEach(function (c) {
+        var b = el('button', 'sw' + (kind === 'hl' && !c[1] ? ' none' : ''));
+        b.setAttribute('aria-label', c[0]);
+        b.title = c[0];
+        if (kind === 'text') { b.textContent = 'A'; if (c[1]) b.style.color = c[1]; }
+        else if (c[1]) b.style.backgroundColor = c[1];
+        b.addEventListener('mousedown', function (e) { e.preventDefault(); });
+        b.addEventListener('click', function () {
+          closeMenus();
+          applyColor(kind, c[1]);
+          if (kind === 'text') btn.querySelector('i').style.background = c[1] || '';
+        });
+        row.appendChild(b);
+      });
+      menu.appendChild(row);
+      btn.addEventListener('mousedown', function (e) { e.preventDefault(); saveSelection(); });
+      dd.appendChild(btn);
+      dd.appendChild(menu);
+      italic.after(dd);
+      wireMenu(btn, menu);
+    });
+  }
+  document.querySelectorAll('.toolbar').forEach(buildColorControls);
+
+  // Text boxes grow with what you write instead of having a drag handle
+  function grow(t) { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }
+  document.addEventListener('input', function (e) {
+    if (e.target.matches && e.target.matches('.drawer textarea, .ccard textarea')) grow(e.target);
+  });
+
+  var RITUAL = [
+    ['Core tension', 'What pulls in two directions in this reading?'],
+    ['One key distinction', 'Two ideas that are easy to mix up, and how they differ.'],
+    ['Plain-language example', 'The idea in everyday words, with an example.'],
+    ['What changed in me?', 'What you think now that you didn’t before.'],
+    ['Human ↔ machine lens', 'How the idea looks for human learning and for machine learning.'],
+    ['Hegelian moment', 'Where the movement Hegel describes showed up for you.'],
+    ['A question to carry', 'A question you want to keep thinking about.'],
+    ['One sentence for the week', 'The week in one sentence.'],
+    ['Next conversation', 'What you want to raise next, with the companion or a person.']
+  ];
+  var pageHost = document.getElementById('pageHost');
+  var pages = [], current = null, seq = 0;
+  function makeDoc(html, ph) {
+    var d = el('div', 'doc');
+    d.contentEditable = 'true';
+    if (ph) d.dataset.ph = ph;
+    if (html) d.innerHTML = html;
+    return d;
+  }
+  function syncDates(page) {
+    var pd = page.dateInput.value;
+    page.el.querySelectorAll('.insert').forEach(function (ins) { ins.querySelector('.idate').hidden = ins.dataset.date === pd; });
+  }
+  function buildPage(title, date, kind) {
+    var rootEl = el('div', 'page');
+    var t = el('div', 'ptitle', title);
+    t.contentEditable = 'true';
+    t.spellcheck = false;
+    rootEl.appendChild(t);
+    var row = el('div', 'pdate');
+    var lab = el('label', null, 'Dated ');
+    var di = document.createElement('input');
+    di.type = 'date';
+    di.value = date;
+    lab.appendChild(di);
+    row.appendChild(lab);
+    rootEl.appendChild(row);
+    var content = el('div', 'pcontent');
+    rootEl.appendChild(content);
+    if (kind === 'ritual') {
+      var html = '';
+      RITUAL.forEach(function (r) { html += '<h3>' + r[0] + '</h3><p class="hintline">' + r[1] + '</p><p><br></p>'; });
+      content.appendChild(makeDoc(html));
+    } else {
+      content.appendChild(makeDoc('', 'Start writing…'));
+    }
+    var page = { id: 'p' + (++seq), el: rootEl, titleEl: t, dateInput: di, content: content };
+    di.addEventListener('change', function () { syncDates(page); });
+    pages.push(page);
+    pageHost.appendChild(rootEl);
+    return page;
+  }
+  var DEMO_HEGEL = { text: 'the standard for examining is altered when that, whose criterion this standard was to be, does not hold its ground in the course of the examination', sec: '85' };
+  var DEMO_COMPANION = 'The test ends up testing the standard itself.';
+  function makeInsert(kind, date, text, sec) {
+    var box = el('div', 'insert ' + kind);
+    box.dataset.date = date;
+    box.title = 'Added ' + pretty(date);
+    var head = el('div', 'ihead');
+    head.appendChild(el('span', 'qlabel', kind === 'hegel' ? 'Hegel §' + sec + ' · Baillie' : document.querySelector('.cname').textContent));
+    head.appendChild(el('span', 'idate', pretty(date)));
+    box.appendChild(head);
+    box.appendChild(el('div', 'itext', kind === 'hegel' ? '“' + text + '”' : text));
+    if (kind === 'hegel') {
+      var link = el('button', 'link', 'Open §' + sec + ' in Read');
+      link.addEventListener('click', function () { openRead(sec); });
+      box.appendChild(link);
+    }
+    return box;
+  }
+  function addToPage(kind, text, sec) {
+    if (!current) return;
+    if (kind === 'you') current.content.appendChild(makeDoc('', null)).textContent = text;
+    else current.content.appendChild(makeInsert(kind, today(), text, sec));
+    current.content.appendChild(makeDoc('', 'Keep writing…'));
+    syncDates(current);
+    say('Added to “' + (current.titleEl.textContent.trim() || 'Untitled') + '” in your notebook.');
+  }
+  function showPage(p) {
+    current = p;
+    pages.forEach(function (x) { x.el.hidden = x !== p; });
+    var sc = pageHost.closest('.body');
+    if (sc) sc.scrollTop = 0;
+    renderShare();
+  }
+
+  // ---------- Sharing a notebook page (private until she shares it) ----------
+  var shareBtn = document.getElementById('shareBtn'), sharePop = document.getElementById('sharePop');
+  var shareInstr = document.getElementById('shareInstr'), inviteInput = document.getElementById('inviteInput'), peopleEl = document.getElementById('sharePeople');
+  function shareOf(pg) { if (!pg.share) pg.share = { instructor: false, people: [] }; return pg.share; }
+  function isShared(pg) { return !!(pg.share && (pg.share.instructor || pg.share.people.length)); }
+  function listText(a) { return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1]; }
+  function renderShare() {
+    if (!current || !shareBtn) return;
+    var sh = shareOf(current), names = [];
+    if (sh.instructor) names.push('your instructor');
+    sh.people.forEach(function (n) { names.push(n); });
+    document.querySelector('#nbBanner .bicon').innerHTML = icon(names.length ? 'users' : 'lock');
+    document.getElementById('nbShareText').textContent = names.length ? 'Shared with ' + listText(names) + '. They can read and comment; only you can edit.' : 'Private. Only you see this page.';
+    shareBtn.textContent = names.length ? 'Manage sharing' : 'Share';
+    shareInstr.checked = sh.instructor;
+    peopleEl.innerHTML = '';
+    sh.people.forEach(function (n, i) {
+      var chip = el('span', 'pchip', n), x = el('button', null, '\u00d7');
+      x.setAttribute('aria-label', 'Stop sharing with ' + n);
+      x.addEventListener('click', function (e) { e.stopPropagation(); sh.people.splice(i, 1); renderShare(); });
+      chip.appendChild(x);
+      peopleEl.appendChild(chip);
+    });
+  }
+  shareInstr.addEventListener('change', function () { shareOf(current).instructor = shareInstr.checked; renderShare(); });
+  function invite() {
+    var n = inviteInput.value.trim();
+    if (!n) { inviteInput.focus(); return; }
+    shareOf(current).people.push(n);
+    inviteInput.value = '';
+    renderShare();
+    say('In the mockup nothing is sent; the real app would email the invitation.');
+  }
+  document.getElementById('inviteBtn').addEventListener('click', invite);
+  inviteInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); invite(); } });
+  wireMenu(shareBtn, sharePop, renderShare);
+
+  var p3 = buildPage('Questions on experience (§86)', '2026-10-06', 'free');
+  p3.content.innerHTML = '';
+  p3.content.appendChild(makeDoc('<p>What is the “new object” in §86, in my own words?</p>'));
+  buildPage('Reflection on §§83–85', '2026-10-11', 'ritual');
+  var p1 = buildPage('Reading notes on §85', '2026-10-09', 'free');
+  p1.content.innerHTML = '';
+  p1.content.appendChild(makeDoc('<p>The test changes the standard, not just the answer.</p><p>So learning is not only correcting mistakes. Sometimes what I count as “understanding” changes too.</p>'));
+  p1.content.appendChild(makeInsert('hegel', '2026-10-09', DEMO_HEGEL.text, DEMO_HEGEL.sec));
+  p1.content.appendChild(makeDoc('<p>Question for me: when I study with AI, whose standard is being tested, and who changed it?</p>'));
+  syncDates(p1);
+  showPage(p1);
+
+  function fillPagesMenu() {
+    pagesMenu.innerHTML = '';
+    var notebook = view === 'notebook';
+    pagesMenu.appendChild(el('div', 'phead', notebook ? 'Notebook pages' : 'Weekly assignment'));
+    if (notebook) {
+      var srch = el('input', 'psearch');
+      srch.type = 'search';
+      srch.placeholder = 'Search your pages';
+      srch.setAttribute('aria-label', 'Search your pages');
+      pagesMenu.appendChild(srch);
+    }
+    var g = el('div', 'grp');
+    g.appendChild(el('h4', null, notebook ? 'Newest first' : 'Your instructor sees these'));
+    if (notebook) {
+      pages.slice().sort(function (a, b) { return a.dateInput.value < b.dateInput.value ? 1 : -1; }).forEach(function (p) {
+        var b = el('button', 'it');
+        b.appendChild(el('span', 'mi', p.titleEl.textContent.trim() || 'Untitled'));
+        b.appendChild(el('span', 'md', pretty(p.dateInput.value) + (isShared(p) ? ' · shared' : ' · private')));
+        b.setAttribute('aria-current', String(p === current));
+        b.addEventListener('click', function () { closeMenus(); showPage(p); });
+        g.appendChild(b);
+      });
+    } else {
+      ['Week 1 · Synthesis', 'Week 2 · Experience', 'Week 3 · Recognition', 'Week 4 · Attention / Consciousness', 'Week 5 · Alignment', 'Week 6 · Critique'].forEach(function (w, i) {
+        var b = el('button', 'it');
+        b.appendChild(el('span', 'mi', w));
+        b.setAttribute('aria-current', String(i === 5));
+        b.addEventListener('click', function () { closeMenus(); if (i !== 5) say('Only Week 6 is in this mockup.'); });
+        g.appendChild(b);
+      });
+    }
+    pagesMenu.appendChild(g);
+    var none = el('p', 'pempty', 'No pages match.');
+    none.hidden = true;
+    pagesMenu.appendChild(none);
+  }
+  wireMenu(pagesBtn, pagesMenu, fillPagesMenu);
+  wireMenu(document.getElementById('newPageBtn'), document.getElementById('newPageMenu'));
+  var TPL = { free: 'Untitled page', ritual: 'Reflection', quick: 'Quick reflection', reading: 'Reading note' };
+  document.querySelectorAll('#newPageMenu [data-tpl]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      closeMenus();
+      var p = buildPage(TPL[b.dataset.tpl], today(), b.dataset.tpl);
+      showPage(p);
+      p.titleEl.focus();
+    });
+  });
+  document.querySelector('[data-tpl-later]').addEventListener('click', function () { closeMenus(); say('Your own templates come later.'); });
+  wireMenu(document.getElementById('insertBtn'), document.getElementById('insertMenu'));
+  document.querySelectorAll('#insertMenu [data-insert]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      closeMenus();
+      if (b.dataset.insert === 'hegel') addToPage('hegel', (lastSel.hegel || DEMO_HEGEL).text, (lastSel.hegel || DEMO_HEGEL).sec);
+      else addToPage('companion', lastSel.companion || DEMO_COMPANION);
+    });
+  });
+
+  // ---------- Selections: Ask in Chat / Add to notebook ----------
+  var lastSel = { hegel: null, companion: null };
+  function askAbout(text, sec) {
+    state.on.chat = true; state.prevOn = null;
+    if (narrow) state.focus = 'chat';
+    render(); save();
+    quote = { text: text, sec: sec };
+    renderAttached();
+    input.focus();
+  }
+  document.getElementById('askChat').addEventListener('click', function () { askAbout(DEMO_HEGEL.text, DEMO_HEGEL.sec); });
+  document.getElementById('addDemo').addEventListener('click', function () { addToPage('hegel', DEMO_HEGEL.text, DEMO_HEGEL.sec); });
+
+  var floatbar = document.getElementById('floatbar'), fbAsk = document.getElementById('fbAsk'), fbAdd = document.getElementById('fbAdd'), fbCmt = document.getElementById('fbCmt');
+  var selCtx = null;
+  [fbAsk, fbAdd, fbCmt].forEach(function (b) { b.addEventListener('mousedown', function (e) { e.preventDefault(); }); });
+  function hideFloat() { floatbar.hidden = true; }
+  function checkSel() {
+    var sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.rangeCount) { hideFloat(); return; }
+    var text = sel.toString().replace(/\s+/g, ' ').trim();
+    if (text.length < 3) { hideFloat(); return; }
+    var range = sel.getRangeAt(0);
+    var node = range.commonAncestorContainer;
+    var host = node.nodeType === 1 ? node : node.parentElement;
+    var inRead = host.closest('.reading'), inCo = host.closest('.from-companion'), inYou = host.closest('.from-you');
+    var inAssign = host.closest('.aedit');
+    if (inAssign && inAssign.classList.contains('diffing')) inAssign = null;
+    if (!inRead && !inCo && !inYou && !inAssign) { hideFloat(); return; }
+    if (inAssign) {
+      selCtx = { kind: 'assign', range: range.cloneRange() };
+      fbAsk.hidden = true;
+      fbAdd.hidden = true;
+      fbCmt.hidden = false;
+    } else {
+      var secEl = host.closest('[data-sec]') || (range.startContainer.parentElement && range.startContainer.parentElement.closest('[data-sec]'));
+      selCtx = { text: text.slice(0, 600), kind: inRead ? 'hegel' : inCo ? 'companion' : 'you', sec: secEl ? secEl.dataset.sec : '85' };
+      if (selCtx.kind === 'hegel') lastSel.hegel = { text: selCtx.text, sec: selCtx.sec };
+      if (selCtx.kind === 'companion') lastSel.companion = selCtx.text;
+      fbAsk.hidden = !inRead;
+      fbAdd.hidden = false;
+      fbCmt.hidden = true;
+    }
+    floatbar.hidden = false;
+    var r = range.getBoundingClientRect();
+    var w = floatbar.offsetWidth, h = floatbar.offsetHeight;
+    var x = Math.min(window.innerWidth - w - 8, Math.max(8, r.left + r.width / 2 - w / 2));
+    var y = r.bottom + 8;
+    if (y + h > window.innerHeight - 8) y = Math.max(8, r.top - h - 8);
+    floatbar.style.left = x + 'px';
+    floatbar.style.top = y + 'px';
+  }
+  document.addEventListener('mouseup', function (e) { if (!floatbar.contains(e.target)) setTimeout(checkSel, 0); });
+  document.addEventListener('keyup', function (e) { if (e.shiftKey) setTimeout(checkSel, 0); });
+  document.addEventListener('scroll', hideFloat, true);
+  if ('ontouchstart' in window) {
+    var selTimer = null;
+    document.addEventListener('selectionchange', function () { clearTimeout(selTimer); selTimer = setTimeout(checkSel, 350); });
+  }
+  fbAsk.addEventListener('click', function () { if (selCtx) askAbout(selCtx.text, selCtx.sec); hideFloat(); window.getSelection().removeAllRanges(); });
+  fbAdd.addEventListener('click', function () { if (selCtx) addToPage(selCtx.kind, selCtx.text, selCtx.sec); hideFloat(); window.getSelection().removeAllRanges(); });
+  fbCmt.addEventListener('click', function () { if (selCtx && selCtx.kind === 'assign') addComment(selCtx.range); hideFloat(); });
+
+  // ---------- Weekly assignment: edit freely; changes since last week shown on request ----------
+  // Every version is kept, so the page can compute what changed instead of asking her to track it.
+  var showChanges = document.getElementById('showChanges'), legendCh = document.getElementById('legendCh');
+  var carried = Array.prototype.slice.call(document.querySelectorAll('.aedit[data-week5]'));
+  function esc(t) { return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function diffWords(a, b) {
+    var A = a.match(/\S+\s*/g) || [], B = b.match(/\S+\s*/g) || [], n = A.length, m = B.length, i, j, L = [];
+    for (i = 0; i <= n; i++) L.push(new Array(m + 1).fill(0));
+    for (i = n - 1; i >= 0; i--) for (j = m - 1; j >= 0; j--) L[i][j] = A[i] === B[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+    var out = [];
+    function push(type, t) { var last = out[out.length - 1]; if (last && last.type === type) last.t += t; else out.push({ type: type, t: t }); }
+    i = 0; j = 0;
+    while (i < n && j < m) {
+      if (A[i] === B[j]) { push('eq', A[i]); i++; j++; }
+      else if (L[i + 1][j] >= L[i][j + 1]) { push('del', A[i]); i++; }
+      else { push('ins', B[j]); j++; }
+    }
+    while (i < n) push('del', A[i++]);
+    while (j < m) push('ins', B[j++]);
+    return {
+      changed: out.some(function (o) { return o.type !== 'eq'; }),
+      html: out.map(function (o) { return o.type === 'eq' ? esc(o.t) : '<' + o.type + '>' + esc(o.t) + '</' + o.type + '>'; }).join('')
+    };
+  }
+  showChanges.addEventListener('change', function () {
+    var on = showChanges.checked;
+    carried.forEach(function (box) {
+      if (on) {
+        box.dataset.saved = box.innerHTML;
+        var d = diffWords(box.dataset.week5, box.textContent.replace(/\s+/g, ' ').trim());
+        box.innerHTML = d.changed ? d.html : esc(box.textContent) + ' <span class="nochg">(no changes since Week 5)</span>';
+        box.contentEditable = 'false';
+        box.classList.add('diffing');
+      } else {
+        box.innerHTML = box.dataset.saved;
+        box.contentEditable = 'true';
+        box.classList.remove('diffing');
+      }
+    });
+    legendCh.hidden = !on;
+    layoutComments();
+  });
+
+  // ---------- Comments beside the words they are about (as in Google Docs) ----------
+  var commentsEl = document.getElementById('comments'), assignWrap = document.getElementById('assignWrap');
+  var COMMENTS = [{ id: 'c1', who: 'Instructor', when: 'sample comment', text: 'Comments from your instructor sit beside the words they are about. For example: which standard changes here, yours or the course\u2019s?' }];
+  var cseq = 1;
+  function markFor(id) { return document.querySelector('mark.cmt[data-c="' + id + '"]'); }
+  function setActive(id) {
+    document.querySelectorAll('mark.cmt').forEach(function (m) { m.classList.toggle('active', m.dataset.c === id); });
+    commentsEl.querySelectorAll('.ccard').forEach(function (c) { c.classList.toggle('active', c.dataset.c === id); });
+  }
+  function cardFor(cm, editing) {
+    var card = el('div', 'ccard');
+    card.dataset.c = cm.id;
+    var head = el('div', 'chead');
+    head.appendChild(el('b', null, cm.who));
+    head.appendChild(el('span', null, cm.when));
+    card.appendChild(head);
+    if (editing) {
+      var ta = el('textarea');
+      ta.placeholder = 'Add a comment\u2026';
+      ta.setAttribute('aria-label', 'Your comment');
+      card.appendChild(ta);
+      var acts = el('div', 'cacts'), cancel = el('button', null, 'Cancel'), post = el('button', 'primary', 'Comment');
+      cancel.addEventListener('click', function (e) { e.stopPropagation(); removeComment(cm.id); });
+      post.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (!ta.value.trim()) { ta.focus(); return; }
+        cm.text = ta.value.trim();
+        renderComments();
+        setActive(cm.id);
+      });
+      acts.appendChild(cancel);
+      acts.appendChild(post);
+      card.appendChild(acts);
+      setTimeout(function () { ta.focus(); }, 0);
+    } else {
+      card.appendChild(el('p', null, cm.text));
+      var rb = el('button', 'creply', 'Reply');
+      rb.addEventListener('click', function (e) { e.stopPropagation(); say('Replies aren\u2019t part of this mockup.'); });
+      card.appendChild(rb);
+    }
+    card.addEventListener('click', function () {
+      setActive(cm.id);
+      var m = markFor(cm.id);
+      if (m) m.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    });
+    return card;
+  }
+  function renderComments(editId) {
+    commentsEl.innerHTML = '';
+    COMMENTS.forEach(function (cm) { commentsEl.appendChild(cardFor(cm, cm.id === editId || !cm.text)); });
+    layoutComments();
+  }
+  function removeComment(id) {
+    COMMENTS = COMMENTS.filter(function (c) { return c.id !== id; });
+    var m = markFor(id);
+    if (m) {
+      var parent = m.parentNode;
+      while (m.firstChild) parent.insertBefore(m.firstChild, m);
+      m.remove();
+      parent.normalize();
+    }
+    renderComments();
+  }
+  function addComment(range) {
+    var id = 'c' + (++cseq), m = document.createElement('mark');
+    m.className = 'cmt';
+    m.dataset.c = id;
+    try { m.appendChild(range.extractContents()); range.insertNode(m); } catch (err) { return; }
+    COMMENTS.push({ id: id, who: 'You', when: 'today', text: '' });
+    renderComments(id);
+    setActive(id);
+    window.getSelection().removeAllRanges();
+  }
+  // Each card sits level with its words, pushed down only to avoid overlapping the card above.
+  function layoutComments() {
+    if (!commentsEl.offsetParent) return;
+    var first = commentsEl.querySelector('.ccard');
+    if (!first || getComputedStyle(first).position === 'static') return;
+    var base = commentsEl.getBoundingClientRect().top, next = 22;
+    Array.prototype.slice.call(commentsEl.querySelectorAll('.ccard')).map(function (card) {
+      var m = markFor(card.dataset.c);
+      return { card: card, want: m ? m.getBoundingClientRect().top - base : (+card.dataset.top || 0) };
+    }).sort(function (a, b) { return a.want - b.want; }).forEach(function (o) {
+      var top = Math.max(o.want, next);
+      o.card.style.top = top + 'px';
+      o.card.dataset.top = top;
+      next = top + o.card.offsetHeight + 8;
+    });
+    commentsEl.style.minHeight = next + 'px';
+  }
+  document.getElementById('cmtBtn').addEventListener('mousedown', function (e) { e.preventDefault(); });
+  document.getElementById('cmtBtn').addEventListener('click', function () {
+    var sel = window.getSelection();
+    if (sel.rangeCount && !sel.isCollapsed) {
+      var r = sel.getRangeAt(0), h = r.commonAncestorContainer;
+      h = h.nodeType === 1 ? h : h.parentElement;
+      if (h.closest('.aedit') && !h.closest('.diffing')) { addComment(r); return; }
+    }
+    say('Select some words in your answers first, then comment.');
+  });
+  document.addEventListener('click', function (e) {
+    var m = e.target.closest && e.target.closest('mark.cmt');
+    if (m) setActive(m.dataset.c);
+  });
+  document.addEventListener('input', function (e) {
+    if (e.target.closest && e.target.closest('.aedit')) requestAnimationFrame(layoutComments);
+  });
+  if ('ResizeObserver' in window) new ResizeObserver(function () { layoutComments(); }).observe(assignWrap);
+  renderComments();
+
+  // ---------- Keyboard ----------
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var open = menus.filter(function (m) { return !m.menu.hidden; })[0];
+    if (open) { closeMenus(); open.btn.focus(); }
+    else if (!settings.hidden) { closeSettings(); sBtn.focus(); }
+    else hideFloat();
+  });
+
+  // ---------- Phone width: one space at a time ----------
+  function checkWidth() {
+    var n = app.clientWidth < 640;
+    if (n !== narrow) { narrow = n; if (narrow && !state.on[state.focus]) state.focus = firstOn(); render(); }
+  }
+  if ('ResizeObserver' in window) new ResizeObserver(checkWidth).observe(app); else window.addEventListener('resize', checkWidth);
+  narrow = app.clientWidth < 640;
+  render();
+
+  // Open the reading at the selected §85 passage, so the first view shows it
+  var readBody = document.getElementById('readBody');
+  function toSelection() {
+    var mark = document.getElementById('demoSel');
+    if (!mark || readBody.offsetParent === null) return;
+    readBody.scrollTop += mark.getBoundingClientRect().top - readBody.getBoundingClientRect().top - readBody.clientHeight * 0.3;
+  }
+  toSelection();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(toSelection);
+})();
+</script>
